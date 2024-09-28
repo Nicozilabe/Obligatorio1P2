@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Entrega1.Clases.Publicacion;
@@ -13,6 +14,7 @@ namespace Entrega1
         private List<Articulo> Articulos = new List<Articulo>();
         private List<Usuario> Usuarios = new List<Usuario>();
         private List<Publicacion> Publicaciones = new List<Publicacion>();
+        private List<Cliente> Clientes = new List<Cliente>();
         private static Sistema? instancia = null;
         private Sistema()
         {
@@ -34,6 +36,9 @@ namespace Entrega1
             }
             return instancia;
             
+        }
+        public List<Cliente> GetClientes() {
+            return Clientes;
         }
     }
 }
