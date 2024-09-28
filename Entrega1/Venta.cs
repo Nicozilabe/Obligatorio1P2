@@ -8,7 +8,7 @@ namespace Entrega1
 {
     public class Venta:Publicacion
     {
-        public string Estado { get; set; }
+        public string EstadoVenta { get; set; }
         // Esto probablemente no sea String.
 
         public Venta()
@@ -17,11 +17,11 @@ namespace Entrega1
         }
         public Venta(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, bool esOfertaRelampago, Cliente comprador, DateTime fechaDeFin, string estadoVenta):base(nombre, estado, fechaPublicacion, realizador, esOfertaRelampago, comprador, fechaDeFin)
         {
-            Estado = estadoVenta;
+            EstadoVenta = estadoVenta;
         }
         public override string ToString()
         {
-            return $""; 
+            return $"{Nombre}, {Estado}, {FechaPublicacion}, {Realizador}, {EsOfertaRelampago}, {Comprador}, {FechaDeFin}, {EstadoVenta}"; 
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Entrega1
         }
         public override string ToString()
         {
-            return $"";
+            return $"{Monto}, {Usuario}, {Fecha}";
         }
     }
 }

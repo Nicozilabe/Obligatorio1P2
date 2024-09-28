@@ -35,6 +35,12 @@ namespace Entrega1
             Comprador = comprador;
             FechaDeFin = fechaDeFin;
         }
+
+        public override string ToString()
+        {
+            return $"{Nombre}, {Estado}, {FechaPublicacion}, {Realizador}, {EsOfertaRelampago}, {Comprador}, {FechaDeFin}";
+        }
+
         public List<Articulo> GetArticulos()
         {
             return Articulos;
