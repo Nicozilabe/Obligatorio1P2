@@ -12,9 +12,20 @@ namespace Entrega1
         private List<Usuario> Usuarios = new List<Usuario>();
         private List<Publicacion> Publicaciones = new List<Publicacion>();
 
-        public Sistema()
+        private static Sistema? instancia = null;
+        private Sistema()
         {
 
+        }
+        public static Sistema GetInstancia()
+        {
+            if (instancia == null)
+            {
+                instancia = new Sistema();
+                
+            }
+            return instancia;
+            
         }
     }
 }
