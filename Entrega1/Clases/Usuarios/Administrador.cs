@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entrega1
+namespace Entrega1.Clases.Usuarios
 {
     public class Administrador : Usuario
     {
-        public Administrador():base()
+        public Administrador() : base()
         {
         }
         public Administrador(string nombre, string apellido, string email, string pass) : base(nombre, apellido, email, pass)

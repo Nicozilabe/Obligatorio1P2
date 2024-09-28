@@ -4,8 +4,9 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using Entrega1.Clases.Usuarios;
 
-namespace Entrega1
+namespace Entrega1.Clases.Publicacion
 {
     public class Publicacion
     {
@@ -25,7 +26,7 @@ namespace Entrega1
         {
             _ultimoId++;
         }
-        public Publicacion(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, bool esOfertaRelampago, Cliente comprador, DateTime fechaDeFin):this()
+        public Publicacion(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, bool esOfertaRelampago, Cliente comprador, DateTime fechaDeFin) : this()
         {
             Nombre = nombre;
             Estado = estado;
@@ -35,12 +36,6 @@ namespace Entrega1
             Comprador = comprador;
             FechaDeFin = fechaDeFin;
         }
-
-        public override string ToString()
-        {
-            return $"{Nombre}, {Estado}, {FechaPublicacion}, {Realizador}, {EsOfertaRelampago}, {Comprador}, {FechaDeFin}";
-        }
-
         public List<Articulo> GetArticulos()
         {
             return Articulos;

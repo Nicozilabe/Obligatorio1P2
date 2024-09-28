@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entrega1.Clases.Publicacion;
+using Entrega1.Clases.Usuarios;
 
 namespace Entrega1
 {

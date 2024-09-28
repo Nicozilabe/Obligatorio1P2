@@ -1,4 +1,7 @@
-﻿namespace Entrega1
+﻿using Entrega1.Clases.Publicacion;
+using Entrega1.Clases.Usuarios;
+
+namespace Entrega1
 {
     internal class Program
     {
@@ -70,15 +73,15 @@
                     double precio = double.Parse(Console.ReadLine());
 
                     Articulo nuevo = new Articulo(nombre, categoria, precio);
-                    
+
                 }
                 else if (op == 4)
                 {
 
                 }
-                
-           
-                Console.ReadKey();
+            }
+
+            Console.ReadKey();
         }
     }
 }

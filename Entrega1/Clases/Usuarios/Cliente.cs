@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entrega1
+namespace Entrega1.Clases.Usuarios
 {
-    public class Cliente:Usuario
+    public class Cliente : Usuario
     {
         public double Saldo { get; set; }
         public Cliente()
         {
-            
+
         }
         public Cliente(string nombre, string apellido, string email, string pass, double saldo) : base(nombre, apellido, email, pass)
         {

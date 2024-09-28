@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entrega1
+namespace Entrega1.Clases.Usuarios
 {
     public class Usuario
     {
@@ -20,7 +20,7 @@ namespace Entrega1
             Id = _ultimoId++;
         }
 
-        public Usuario(string nombre, string apellido, string email, string pass):this()
+        public Usuario(string nombre, string apellido, string email, string pass) : this()
         {
             Nombre = nombre;
             Apellido = apellido;
