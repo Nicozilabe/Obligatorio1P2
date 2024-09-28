@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entrega1.Clases.Usuarios;
+using Entrega1.Interfaz;
 
 namespace Entrega1.Clases.Publicacion
 {
@@ -23,5 +24,6 @@ namespace Entrega1.Clases.Publicacion
         {
             return $"";
         }
+        
     }
 }

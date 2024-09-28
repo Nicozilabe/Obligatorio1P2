@@ -5,10 +5,11 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using Entrega1.Clases.Usuarios;
+using Entrega1.Interfaz;
 
 namespace Entrega1.Clases.Publicacion
 {
-    public class Publicacion
+    public class Publicacion: Iverificar
     {
         private static int _ultimoId = 1;
         public int Id { get; set; }
@@ -43,6 +44,26 @@ namespace Entrega1.Clases.Publicacion
         public void AgregarArticulo(Articulo art1)
         {
             Articulos.Add(art1);
+        }
+        public virtual void Verificar()
+        {
+            if (string.IsNullOrEmpty(Nombre))
+            {
+                throw new Exception("Nombre no valido");
+            }
+            if (string.IsNullOrEmpty(Estado))
+            {
+                throw new Exception("Estado no valido");
+            }
+            //Verificar datetime
+            if (Realizador == null)
+            {
+                throw new Exception("Realizador no valido");
+            }
+            if (Comprador == null)
+            {
+                throw new Exception("Realizador no valido");
+            }
         }
     }
 }

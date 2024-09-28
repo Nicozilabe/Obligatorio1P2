@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entrega1.Clases.Usuarios;
+using Entrega1.Interfaz;
 
 namespace Entrega1.Clases.Publicacion
 {
     public class Venta : Publicacion
     {
-        public string Estado { get; set; }
+        public string EstadoVenta { get; set; }
         // Esto probablemente no sea String.
 
         public Venta()
@@ -18,11 +19,21 @@ namespace Entrega1.Clases.Publicacion
         }
         public Venta(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, bool esOfertaRelampago, Cliente comprador, DateTime fechaDeFin, string estadoVenta) : base(nombre, estado, fechaPublicacion, realizador, esOfertaRelampago, comprador, fechaDeFin)
         {
-            Estado = estadoVenta;
+            EstadoVenta = estadoVenta;
         }
         public override string ToString()
         {
             return $"";
+        }
+
+        public override void  Verificar()
+        {
+            base.Verificar();
+            if (string.IsNullOrEmpty(EstadoVenta))
+            {
+                throw new Exception("Estado venta no valido");
+            }
+
         }
     }
 }
