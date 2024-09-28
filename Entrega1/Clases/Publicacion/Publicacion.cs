@@ -45,6 +45,14 @@ namespace Entrega1.Clases.Publicacion
         {
             Articulos.Add(art1);
         }
+
+
+        public override string ToString()
+        {
+            return $"{Nombre}, {Estado}, {FechaPublicacion}, {Realizador}, {EsOfertaRelampago}, {Comprador}, {FechaDeFin}";
+        }
+
+
         public virtual void Verificar()
         {
             if (string.IsNullOrEmpty(Nombre))

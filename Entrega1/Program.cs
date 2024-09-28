@@ -73,14 +73,12 @@ namespace Entrega1
                     double precio = double.Parse(Console.ReadLine());
 
                     Articulo nuevo = new Articulo(nombre, categoria, precio);
-
                 }
                 else if (op == 4)
                 {
 
                 }
             }
-
             Console.ReadKey();
         }
     }

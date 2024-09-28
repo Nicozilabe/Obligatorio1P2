@@ -29,7 +29,7 @@ namespace Entrega1.Clases.Publicacion
         }
         public override string ToString()
         {
-            return $"";
+            return $"{Monto}, {Usuario}, {Fecha}";
         }
 
         public void Verificar()

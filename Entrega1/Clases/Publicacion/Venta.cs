@@ -23,7 +23,7 @@ namespace Entrega1.Clases.Publicacion
         }
         public override string ToString()
         {
-            return $"";
+            return $"{Nombre}, {Estado}, {FechaPublicacion}, {Realizador}, {EsOfertaRelampago}, {Comprador}, {FechaDeFin}, {EstadoVenta}";
         }
 
         public override void Verificar()

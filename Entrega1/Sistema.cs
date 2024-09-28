@@ -32,10 +32,8 @@ namespace Entrega1
             if (instancia == null)
             {
                 instancia = new Sistema();
-                
             }
             return instancia;
-            
         }
         public List<Cliente> GetClientes() {
             return Clientes;
