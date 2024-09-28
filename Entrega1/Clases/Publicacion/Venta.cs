@@ -26,7 +26,7 @@ namespace Entrega1.Clases.Publicacion
             return $"";
         }
 
-        public override void  Verificar()
+        public override void Verificar()
         {
             base.Verificar();
             if (string.IsNullOrEmpty(EstadoVenta))

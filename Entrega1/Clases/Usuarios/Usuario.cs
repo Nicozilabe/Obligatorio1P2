@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entrega1.Interfaz;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entrega1.Clases.Usuarios
 {
-    public class Usuario
+    public abstract class Usuario:Iverificar
     {
         private static int _ultimoId = 1;
         public int Id { get; set; }
@@ -31,6 +32,26 @@ namespace Entrega1.Clases.Usuarios
         public override string ToString()
         {
             return $"{Nombre}, {Apellido}, {Email}, {Pass}, {Id}";
+        }
+
+        public virtual void Verificar()
+        {
+            if (string.IsNullOrEmpty(Nombre))
+            {
+                throw new Exception("Nombre no valido");
+            }
+            if (string.IsNullOrEmpty(Apellido))
+            {
+                throw new Exception("Apellido no valida");
+            }
+            if (string.IsNullOrEmpty(Email))
+            {
+                throw new Exception("Email no valido");
+            }
+            if (string.IsNullOrEmpty(Pass))
+            {
+                throw new Exception("Password no valida");
+            }
         }
     }
 }

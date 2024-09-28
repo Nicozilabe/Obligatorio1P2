@@ -21,5 +21,13 @@ namespace Entrega1.Clases.Usuarios
         {
             return $"{Nombre}, {Apellido}, {Email}, {Pass}, {Id}, {Saldo}";
         }
+        public override void Verificar()
+        {
+            base.Verificar();
+            if (double.IsNaN(Saldo) || Saldo < 1)
+            {
+                throw new Exception("Saldo no valido");
+            }
+        }
     }
 }

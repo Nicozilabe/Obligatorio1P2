@@ -9,7 +9,7 @@ using Entrega1.Interfaz;
 
 namespace Entrega1.Clases.Publicacion
 {
-    public class Publicacion: Iverificar
+    public abstract class Publicacion: Iverificar
     {
         private static int _ultimoId = 1;
         public int Id { get; set; }

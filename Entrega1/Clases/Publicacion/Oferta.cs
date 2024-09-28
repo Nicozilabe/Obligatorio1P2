@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entrega1.Clases.Usuarios;
+using Entrega1.Interfaz;
 
 namespace Entrega1.Clases.Publicacion
 {
-    public class Oferta
+    public class Oferta: Iverificar
     {
         private static int _ultimoId = 1;
         public int Id { get; set; }
@@ -29,6 +30,18 @@ namespace Entrega1.Clases.Publicacion
         public override string ToString()
         {
             return $"";
+        }
+
+        public void Verificar()
+        {
+            if (double.IsNaN(Monto)|| Monto < 1)
+            {
+                throw new Exception("Monto no valido");
+            }
+            if(Usuario == null)
+            {
+                throw new Exception("Usuario no valido");
+            }
         }
     }
 }
