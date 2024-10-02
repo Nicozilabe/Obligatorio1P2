@@ -34,7 +34,7 @@ namespace Entrega1
 
             Sistema s = Sistema.GetInstancia();
 
-
+           
             int op = -1;
             while (op != 0)
             {

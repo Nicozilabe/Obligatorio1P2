@@ -8,7 +8,7 @@ using Entrega1.Interfaz;
 
 namespace Entrega1.Clases.Publicacion
 {
-    public class Oferta: Iverificar
+    public class Oferta: Iverificar, IComparable<Oferta>
     {
         private static int _ultimoId = 1;
         public int Id { get; set; }
@@ -42,6 +42,17 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("Usuario no valido");
             }
+        }
+
+        public int CompareTo(Oferta? other)
+        {
+            return (Monto.CompareTo(other.Monto));
+
+        }
+        public override bool Equals(object? obj)
+        {
+            return obj is Oferta oferta && Monto == oferta.Monto && Usuario == oferta.Usuario;
+                
         }
     }
 }

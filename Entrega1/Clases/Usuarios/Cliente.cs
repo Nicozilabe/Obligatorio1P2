@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entrega1.Clases.Publicacion;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,5 +30,6 @@ namespace Entrega1.Clases.Usuarios
                 throw new Exception("Saldo no valido");
             }
         }
+
     }
 }

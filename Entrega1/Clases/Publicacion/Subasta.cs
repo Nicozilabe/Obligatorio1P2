@@ -10,7 +10,7 @@ namespace Entrega1.Clases.Publicacion
 {
     public class Subasta : Publicacion
     {
-        private List<Oferta> Ofertas = new List<Oferta>();
+        private List<Oferta> _ofertas = new List<Oferta>();
 
         public Subasta()
         {
@@ -24,6 +24,27 @@ namespace Entrega1.Clases.Publicacion
         {
             return $"{Nombre}, {Estado}, {FechaPublicacion}, {Realizador}, {EsOfertaRelampago}, {Comprador}, {FechaDeFin}";
         }
-        
+        public void OfertaValida(Oferta o)
+        {
+            if (_ofertas.Contains(o))
+            {
+                throw new Exception("Oferta ya existente");
+            }
+            else {
+                foreach (Oferta oferta in _ofertas)
+                {
+                    if (oferta.Monto >= o.Monto)
+                    {
+                        throw new Exception("El monto debe ser superior a la anterior oferta");
+                    }
+            }
+            }
+            
+        }
+        public void AgregarOferta(Oferta o)
+        {
+            _ofertas.Add(o);
+        }
+
     }
 }

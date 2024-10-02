@@ -80,10 +80,10 @@ namespace Entrega1
                 throw new Exception("El administrador ya existe");
             }
         }
-        public void AltaOferta()
-        {
-            // No se que onda aca.
-        }
+        //public void AltaOferta(Oferta o, int idPublicación)
+        //{
+        //     No se que onda aca.
+        //}
 
 
         public List<Articulo> GetArticulos()
