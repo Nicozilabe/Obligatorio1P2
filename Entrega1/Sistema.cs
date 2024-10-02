@@ -11,10 +11,13 @@ namespace Entrega1
 {
     public class Sistema
     {
-        private List<Articulo> Articulos = new List<Articulo>();
-        private List<Usuario> Usuarios = new List<Usuario>();
-        private List<Publicacion> Publicaciones = new List<Publicacion>();
-        private List<Cliente> Clientes = new List<Cliente>();
+        private List<Articulo>_articulos = new List<Articulo>();
+        private List<Usuario> _usuarios = new List<Usuario>();
+        private List<Publicacion> _publicaciones = new List<Publicacion>();
+        private List<Cliente> _clientes = new List<Cliente>();
+        private List<Venta> _ventas = new List<Venta>();
+        private List<Subasta> _subastas = new List<Subasta>();
+        private List<Administrador> _administradores = new List<Administrador>();
         private static Sistema? instancia = null;
         private Sistema()
         {
@@ -36,7 +39,62 @@ namespace Entrega1
             return instancia;
         }
         public List<Cliente> GetClientes() {
-            return Clientes;
+            return _clientes;
         }
+
+        public void AltaVenta(Venta x)
+        {
+            x.Verificar();
+            _ventas.Add(x);
+        }
+        public void AltaSubasta(Subasta x)
+        {
+            x.Verificar();
+            _subastas.Add(x);
+        }
+        public void AltaArticulo(Articulo x)
+        {
+            x.Verificar();
+            _articulos.Add(x);
+        }
+        public void AltaCliente(Cliente x)
+        {
+            x.Verificar();
+            if (!_clientes.Contains(x))
+            {
+                _clientes.Add(x);
+            }
+            else
+            {
+                throw new Exception("El cliente ya existe");
+            }
+        }
+        public void AltaAdministrador(Administrador x)
+        {
+            x.Verificar();
+            if (!_administradores.Contains(x))
+            {
+                _administradores.Add(x);
+            }
+            else
+            {
+                throw new Exception("El administrador ya existe");
+            }
+        }
+        public void AltaOferta(Oferta x)
+        {
+            // No se que onda aca.
+        }
+
+
+        public List<Articulo> GetArticulos()
+        {
+            return _articulos;
+        }
+        public List<Publicacion> GetPublicaciones()
+        {
+            return _publicaciones;
+        }
+
     }
 }

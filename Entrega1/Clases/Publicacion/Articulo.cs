@@ -32,7 +32,7 @@ namespace Entrega1.Clases.Publicacion
             return $"{Nombre}, {Categoria}, {Precio}, id:{Id}";
         }
 
-        void Iverificar.Verificar()
+        public void Verificar()
         {
             if (string.IsNullOrEmpty(Nombre))
             {
