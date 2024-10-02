@@ -11,12 +11,10 @@ namespace Entrega1
 {
     public class Sistema
     {
-        private List<Articulo>_articulos = new List<Articulo>();
+        private List<Articulo> _articulos = new List<Articulo>();
         private List<Usuario> _usuarios = new List<Usuario>();
         private List<Publicacion> _publicaciones = new List<Publicacion>();
         private List<Cliente> _clientes = new List<Cliente>();
-        private List<Venta> _ventas = new List<Venta>();
-        private List<Subasta> _subastas = new List<Subasta>();
         private List<Administrador> _administradores = new List<Administrador>();
         private static Sistema? instancia = null;
         private Sistema()
@@ -38,19 +36,20 @@ namespace Entrega1
             }
             return instancia;
         }
-        public List<Cliente> GetClientes() {
+        public List<Cliente> GetClientes()
+        {
             return _clientes;
         }
 
         public void AltaVenta(Venta x)
         {
             x.Verificar();
-            _ventas.Add(x);
+            _publicaciones.Add(x);
         }
         public void AltaSubasta(Subasta x)
         {
             x.Verificar();
-            _subastas.Add(x);
+            _publicaciones.Add(x);
         }
         public void AltaArticulo(Articulo x)
         {
@@ -81,7 +80,7 @@ namespace Entrega1
                 throw new Exception("El administrador ya existe");
             }
         }
-        public void AltaOferta(Oferta x)
+        public void AltaOferta()
         {
             // No se que onda aca.
         }
