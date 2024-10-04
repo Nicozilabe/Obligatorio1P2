@@ -28,6 +28,7 @@ namespace Entrega1
                 {
                     Console.Clear();
                     Console.WriteLine("Lista clientes:");
+                    Console.WriteLine("----- Inicio -----");
                     List<Cliente> clientes = s.GetClientes();
                     foreach (Cliente c in clientes)
                     {
@@ -39,11 +40,33 @@ namespace Entrega1
                 }
                 else if (op == 2)
                 {
-                    Console.Clear ();
-                    Console.WriteLine("Búsqueda de articulos por categoria");
-                    Console.WriteLine();
-                    Console.WriteLine("Ingrese categoría");
+                    Console.Clear();
+                    Console.WriteLine("Búsqueda de articulos por categoria \n");
+                    Console.WriteLine("Ingrese categoría \n");
                     string c = Console.ReadLine();
+                    List<Articulo> articulos = new List<Articulo>();
+                    try
+                    {
+                        articulos = s.BuscarPorCategoria(c);
+                        if (articulos.Count != 0)
+                        {
+                            Console.WriteLine("Articulos");
+                            Console.WriteLine("----- Inicio -----");
+                            foreach (Articulo a in articulos)
+                            {
+                                Console.WriteLine(a);
+                            }
+                            Console.WriteLine("------ Fin ------");
+                            
+                        }
+                        else
+                        {
+                            Console.WriteLine("No hay articulos con esa categoría");
+                        }
+                    }
+                    catch (Exception ex) { Console.WriteLine($"Error {ex.Message}."); }
+                    Console.WriteLine("Presione una tecla para volver al menú");
+                    Console.ReadKey();
                 }
                 else if (op == 3)
                 {
@@ -51,20 +74,20 @@ namespace Entrega1
                     Console.Clear();
                     Console.WriteLine("Alta de Articulos");
                     Console.WriteLine("Ingrese el nombre");
-   
 
-                       string  nombre = Console.ReadLine();
+
+                    string nombre = Console.ReadLine();
 
 
                     Console.WriteLine("Ingrese la categoria");
 
-                       string  categoria = Console.ReadLine();
-                    
+                    string categoria = Console.ReadLine();
 
-                  
+
+
                     Console.WriteLine("Ingrese el precio");
 
-                      double  precio = double.Parse(Console.ReadLine());
+                    double precio = double.Parse(Console.ReadLine());
 
 
                     Articulo nuevo = new Articulo(nombre, categoria, precio);

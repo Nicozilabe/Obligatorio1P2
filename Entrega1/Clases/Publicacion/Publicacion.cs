@@ -68,10 +68,10 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("Realizador no valido");
             }
-            if (Comprador == null)
-            {
-                throw new Exception("Realizador no valido");
-            }
+            //if (Comprador == null)
+            //{
+            //    throw new Exception("Realizador no valido");
+            //}
         }
     }
 }

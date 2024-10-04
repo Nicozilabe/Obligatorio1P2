@@ -20,7 +20,7 @@ namespace Entrega1.Clases.Usuarios
         }
         public override string ToString()
         {
-            return $"{Nombre}, {Apellido}, {Email}, {Pass}, {Id}, {Saldo}";
+            return $"{Nombre}, {Apellido}, {Email}, {Pass}, id: {Id}, ${Saldo}";
         }
         public override void Verificar()
         {

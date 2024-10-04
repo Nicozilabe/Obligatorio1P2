@@ -323,6 +323,26 @@ namespace Entrega1
         {
             return _publicaciones;
         }
+        public List<Articulo> BuscarPorCategoria(string c)
+        {
+            VerificarCategoria(c);
+            List<Articulo> ret = new List<Articulo>();
+            foreach(Articulo a in _articulos)
+            {
+                if (a.Categoria.ToLower() == c.ToLower())
+                {
+                    ret.Add(a);
+                }
+            }
+            return ret;
+        }
+        private void VerificarCategoria(string c)
+        {
+            if (string.IsNullOrEmpty(c))
+            {
+                throw new Exception("Categoría no valida");
+            }
+        }
 
     }
 }
