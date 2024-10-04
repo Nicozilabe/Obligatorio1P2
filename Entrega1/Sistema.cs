@@ -24,21 +24,24 @@ namespace Entrega1
         {
             List<Usuario> _usuarios = new List<Usuario>();
 
-            // Creación de Administradores
-            _usuarios.Add(new Administrador("Juan", "Pérez", "juan.perez@empresa.com", "admin123"));
-            _usuarios.Add(new Administrador("Ana", "Lopez", "ana.lopez@empresa.com", "admin456"));
 
-            // Creación de Clientes
-            _usuarios.Add(new Cliente("Carlos", "Gomez", "carlos.gomez@cliente.com", "cliente1123", 1000));
-            _usuarios.Add(new Cliente("Maria", "Martinez", "maria.martinez@cliente.com", "cliente2123", 2000));
-            _usuarios.Add(new Cliente("Luis", "Rodriguez", "luis.rodriguez@cliente.com", "cliente3123", 3000));
-            _usuarios.Add(new Cliente("Laura", "Fernandez", "laura.fernandez@cliente.com", "cliente4123", 4000));
-            _usuarios.Add(new Cliente("Jose", "Gonzalez", "jose.gonzalez@cliente.com", "cliente5123", 5000));
-            _usuarios.Add(new Cliente("Sofia", "Perez", "sofia.perez@cliente.com", "cliente6123", 6000));
-            _usuarios.Add(new Cliente("Pedro", "Diaz", "pedro.diaz@cliente.com", "cliente7123", 7000));
-            _usuarios.Add(new Cliente("Marta", "Hernandez", "marta.hernandez@cliente.com", "cliente8123", 8000));
-            _usuarios.Add(new Cliente("Antonio", "Sanchez", "antonio.sanchez@cliente.com", "cliente9123", 9000));
-            _usuarios.Add(new Cliente("Elena", "Ramirez", "elena.ramirez@cliente.com", "cliente10123", 10000));
+            // Administradores
+            AltaAdministrador(new Administrador("Carlos", "Gomez", "carlos@admin.com", "admin123"));
+            AltaAdministrador(new Administrador("Lucia", "Martinez", "lucia@admin.com", "admin456"));
+
+
+            // Clientes
+            AltaCliente(new Cliente("Ana", "Lopez", "al@gmail.com", "al222", 222));
+            AltaCliente(new Cliente("Luis", "Fernandez", "lf@gmail.com", "lf333", 500));
+            AltaCliente(new Cliente("Maria", "Sanchez", "ms@gmail.com", "ms444", 300));
+            AltaCliente(new Cliente("Pedro", "Gonzalez", "pg@gmail.com", "pg555", 150));
+            AltaCliente(new Cliente("Sara", "Perez", "sp@gmail.com", "sp666", 120));
+            AltaCliente(new Cliente("Jose", "Rodriguez", "jr@gmail.com", "jr777", 350));
+            AltaCliente(new Cliente("Marta", "Diaz", "md@gmail.com", "md888", 700));
+            AltaCliente(new Cliente("Javier", "Martinez", "jm@gmail.com", "jm999", 100));
+            AltaCliente(new Cliente("Raul", "Lopez", "rl@gmail.com", "rl000", 450));
+            AltaCliente(new Cliente("Elena", "Jimenez", "ej@gmail.com", "ej111", 600));
+
 
         }
 
@@ -50,9 +53,17 @@ namespace Entrega1
             }
             return instancia;
         }
-        public List<Usuario> GetClientes()
+        public List<Cliente> GetClientes()
         {
-            return _usuarios;
+            List<Cliente> clientes = new List<Cliente>();
+            foreach(Usuario u in _usuarios)
+            {
+                if (u is Cliente c)
+                {
+                    clientes.Add(c);
+                }
+            }
+            return clientes;
         }
 
         public void AltaVenta(Venta x)
@@ -97,7 +108,7 @@ namespace Entrega1
         }
         //public void AltaOferta(Oferta o, int idPublicación)
         //{
-        //     No se que onda aca.
+        //     no es necesario aun
         //}
 
         public void ArticuloExistente(Articulo x)

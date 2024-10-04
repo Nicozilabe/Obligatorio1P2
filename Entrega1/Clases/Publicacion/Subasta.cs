@@ -43,6 +43,8 @@ namespace Entrega1.Clases.Publicacion
         }
         public void AgregarOferta(Oferta o)
         {
+            o.Verificar();
+            OfertaValida(o);
             _ofertas.Add(o);
         }
 

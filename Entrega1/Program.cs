@@ -26,7 +26,7 @@ namespace Entrega1
 
                 if (op == 1)
                 {
-                    List<Usuario> clientes = s.GetClientes();
+                    List<Cliente> clientes = s.GetClientes();
                     foreach (Cliente c in clientes)
                     {
                         Console.WriteLine(c);
