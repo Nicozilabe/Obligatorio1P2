@@ -1,4 +1,5 @@
-﻿using Entrega1.Interfaz;
+﻿using Entrega1.Clases.Usuarios;
+using Entrega1.Interfaz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,12 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("Precio no valido");
             }
+
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Articulo articulo && Nombre  == articulo.Nombre;
 
         }
     }
