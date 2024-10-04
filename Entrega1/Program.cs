@@ -26,15 +26,24 @@ namespace Entrega1
 
                 if (op == 1)
                 {
+                    Console.Clear();
+                    Console.WriteLine("Lista clientes:");
                     List<Cliente> clientes = s.GetClientes();
                     foreach (Cliente c in clientes)
                     {
                         Console.WriteLine(c);
                     }
+                    Console.WriteLine("------ Fin ------");
+                    Console.WriteLine("Presione una tecla para volver al menú.");
+                    Console.ReadKey();
                 }
                 else if (op == 2)
                 {
-                    ////Aqui podemos usar otro WHILE para un menu con las categorias y ya cuando uno seleccione la categoria que te salga la lista con los articulos de dicha categoria.
+                    Console.Clear ();
+                    Console.WriteLine("Búsqueda de articulos por categoria");
+                    Console.WriteLine();
+                    Console.WriteLine("Ingrese categoría");
+                    string c = Console.ReadLine();
                 }
                 else if (op == 3)
                 {
@@ -42,21 +51,31 @@ namespace Entrega1
                     Console.Clear();
                     Console.WriteLine("Alta de Articulos");
                     Console.WriteLine("Ingrese el nombre");
-                    string nombre = Console.ReadLine();
+   
+
+                       string  nombre = Console.ReadLine();
+
+
                     Console.WriteLine("Ingrese la categoria");
-                    string categoria = Console.ReadLine();
+
+                       string  categoria = Console.ReadLine();
+                    
+
+                  
                     Console.WriteLine("Ingrese el precio");
-                    double precio = double.Parse(Console.ReadLine());
+
+                      double  precio = double.Parse(Console.ReadLine());
+
 
                     Articulo nuevo = new Articulo(nombre, categoria, precio);
                     try
                     {
                         s.AltaArticulo(nuevo);
-                        Console.WriteLine("Articulo Agregado exitosamente, pulse una tecla para continuar.");
+                        Console.WriteLine("Articulo Agregado exitosamente, pulse una tecla para volver al menú.");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"El articulo no se pudo agregar: {ex.Message}, presione una tecla para coninuar");
+                        Console.WriteLine($"El articulo no se pudo agregar: {ex.Message}, presione una tecla para volver al menú.");
                     };
                     Console.ReadKey();
                 }

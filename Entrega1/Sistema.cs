@@ -22,7 +22,6 @@ namespace Entrega1
 
         private void precargarDatos()
         {
-            List<Usuario> _usuarios = new List<Usuario>();
 
 
             // Administradores
