@@ -37,7 +37,7 @@ namespace Entrega1.Clases.Publicacion
                     {
                         throw new Exception("El monto debe ser superior a la anterior oferta");
                     }
-            }
+                }
             }
             
         }
