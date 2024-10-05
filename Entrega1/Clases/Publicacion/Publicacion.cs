@@ -46,10 +46,21 @@ namespace Entrega1.Clases.Publicacion
             Articulos.Add(art1);
         }
 
-
         public override string ToString()
         {
-            return $"{Nombre}, {Estado}, {FechaPublicacion}, {Realizador}, {EsOfertaRelampago}, {Comprador}, {FechaDeFin}";
+            string s = "No es oferta rempalago";
+            string comp = "---";
+            string real = "---";
+            if (Comprador != null)
+            {
+                comp = Comprador.Nombre;
+            }
+            if (Realizador != null)
+            {
+                real = Realizador.Nombre;
+            }
+            if (EsOfertaRelampago) { s = "Es oferta relampago"; }
+            return $"{Nombre}, {Estado}, {FechaPublicacion}, {real}, {s}, {comp}, {FechaDeFin}";
         }
 
 

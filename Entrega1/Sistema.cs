@@ -343,6 +343,39 @@ namespace Entrega1
                 throw new Exception("Categoría no valida");
             }
         }
+        public List<Publicacion> GetPublicacionesPorFecha(DateTime inicio, DateTime fin)
+        {
+            VerificarFecha(inicio,fin);
 
+            List<Publicacion> ret = new List<Publicacion>();
+            foreach (Publicacion p in _publicaciones)
+            {
+                if (p.FechaPublicacion >= inicio && p.FechaPublicacion <= fin)
+                {
+                    ret.Add(p);
+                }
+            }
+            return ret;
+        }
+        private void VerificarFecha(DateTime inicio, DateTime fin) {
+            string errores = "";
+            if (inicio > DateTime.Now) {
+                errores += "La fecha de inicio no puede ser superior a la actual";
+            }
+            if (fin > DateTime.Now)
+            {
+                errores += " La fecha de inicio no puede ser superior a la actual";
+            }
+            if (inicio > fin) 
+            { errores += " La fecha de inicio no puede ser mayor a la de fin"; }
+            if (inicio < DateTime.Parse("31-12-2015"))
+            {
+                errores += " La fecha de inicio de busqueda no puede ser menor al 31 de diciembre de 2015";
+            }
+            if (!string.IsNullOrEmpty(errores))
+            {
+                throw new Exception(errores);
+            }
+        }
     }
 }

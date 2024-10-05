@@ -73,26 +73,27 @@ namespace Entrega1
                     ////No nos olvidemos de las excepciones aqui.
                     Console.Clear();
                     Console.WriteLine("Alta de Articulos");
-                    Console.WriteLine("Ingrese el nombre");
 
-
-                    string nombre = Console.ReadLine();
-
-
-                    Console.WriteLine("Ingrese la categoria");
-
-                    string categoria = Console.ReadLine();
-
-
-
-                    Console.WriteLine("Ingrese el precio");
-
-                    double precio = double.Parse(Console.ReadLine());
-
-
-                    Articulo nuevo = new Articulo(nombre, categoria, precio);
                     try
                     {
+                        Console.WriteLine("Ingrese el nombre");
+
+
+                        string nombre = Console.ReadLine();
+
+
+                        Console.WriteLine("Ingrese la categoria");
+
+                        string categoria = Console.ReadLine();
+
+
+
+                        Console.WriteLine("Ingrese el precio");
+
+                        double precio = double.Parse(Console.ReadLine());
+
+                        Articulo nuevo = new Articulo(nombre, categoria, precio);
+
                         s.AltaArticulo(nuevo);
                         Console.WriteLine("Articulo Agregado exitosamente, pulse una tecla para volver al menú.");
                     }
@@ -104,7 +105,35 @@ namespace Entrega1
                 }
                 else if (op == 4)
                 {
+                    Console.Clear();
+                    Console.WriteLine("Ingrese fecha inicio busqueda (DD-MM-AAAA):");
+                    DateTime inicio = DateTime.Parse(Console.ReadLine());
+                    Console.WriteLine("\nIngrese fecha fin busqueda (DD-MM-AAAA):");
+                    DateTime fin = DateTime.Parse(Console.ReadLine());
+                    List<Publicacion> publicaciones = new List<Publicacion>();
+                    try
+                    {
+                        publicaciones = s.GetPublicacionesPorFecha(inicio,fin);
+;
+                        if (publicaciones.Count != 0)
+                        {
+                            Console.WriteLine("Publicaciónes");
+                            Console.WriteLine("----- Inicio -----");
+                            foreach (Publicacion p in publicaciones)
+                            {
+                                Console.WriteLine(p);
+                            }
+                            Console.WriteLine("------ Fin ------");
 
+                        }
+                        else
+                        {
+                            Console.WriteLine("No hay publicaciones entre esas fechas");
+                        }
+                    }
+                    catch (Exception ex) { Console.WriteLine($"Error {ex.Message}."); }
+                    Console.WriteLine("Presione una tecla para volver al menú");
+                    Console.ReadKey();
                 }
             }
             Console.ReadKey();

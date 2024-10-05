@@ -22,7 +22,8 @@ namespace Entrega1.Clases.Publicacion
         }
         public override string ToString()
         {
-            return $"{Nombre}, {Estado}, {FechaPublicacion}, {Realizador}, {EsOfertaRelampago}, {Comprador}, {FechaDeFin}";
+            return "Subasta: " + base.ToString() + $", Cantidad de ofertas{_ofertas.Count()}";
+
         }
         public void OfertaValida(Oferta o)
         {
@@ -30,7 +31,8 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("Oferta ya existente");
             }
-            else {
+            else
+            {
                 foreach (Oferta oferta in _ofertas)
                 {
                     if (oferta.Monto >= o.Monto)
@@ -39,7 +41,7 @@ namespace Entrega1.Clases.Publicacion
                     }
                 }
             }
-            
+
         }
         public void AgregarOferta(Oferta o)
         {
