@@ -106,13 +106,14 @@ namespace Entrega1
                 else if (op == 4)
                 {
                     Console.Clear();
-                    Console.WriteLine("Ingrese fecha inicio busqueda (DD-MM-AAAA):");
-                    DateTime inicio = DateTime.Parse(Console.ReadLine());
-                    Console.WriteLine("\nIngrese fecha fin busqueda (DD-MM-AAAA):");
-                    DateTime fin = DateTime.Parse(Console.ReadLine());
-                    List<Publicacion> publicaciones = new List<Publicacion>();
+
                     try
                     {
+                        Console.WriteLine("Ingrese fecha inicio busqueda (DD-MM-AAAA):");
+                        DateTime inicio = DateTime.Parse(Console.ReadLine());
+                        Console.WriteLine("\nIngrese fecha fin busqueda (DD-MM-AAAA):");
+                        DateTime fin = DateTime.Parse(Console.ReadLine());
+                        List<Publicacion> publicaciones = new List<Publicacion>();
                         publicaciones = s.GetPublicacionesPorFecha(inicio,fin);
 ;
                         if (publicaciones.Count != 0)
