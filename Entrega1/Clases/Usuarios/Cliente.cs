@@ -10,6 +10,7 @@ namespace Entrega1.Clases.Usuarios
     public class Cliente : Usuario
     {
         public double Saldo { get; set; }
+
         public Cliente()
         {
 
@@ -22,6 +23,7 @@ namespace Entrega1.Clases.Usuarios
         {
             return $"{Nombre}, {Apellido}, {Email}, {Pass}, id: {Id}, ${Saldo}";
         }
+        
         public override void Verificar()
         {
             base.Verificar();
@@ -30,6 +32,5 @@ namespace Entrega1.Clases.Usuarios
                 throw new Exception("Saldo no valido");
             }
         }
-
     }
 }

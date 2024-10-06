@@ -37,6 +37,8 @@ namespace Entrega1.Clases.Publicacion
             Comprador = comprador;
             FechaDeFin = fechaDeFin;
         }
+
+        // Para saber que artículos tiene cada publicación.
         public List<Articulo> GetArticulos()
         {
             return Articulos;
@@ -59,10 +61,11 @@ namespace Entrega1.Clases.Publicacion
             {
                 real = Realizador.Nombre;
             }
-            if (EsOfertaRelampago) { s = "Es oferta relampago"; }
+            if (EsOfertaRelampago) { 
+                s = "Es oferta relampago"; 
+            }
             return $"{Nombre}, {Estado}, {FechaPublicacion}, {real}, {s}, {comp}, {FechaDeFin}";
         }
-
 
         public virtual void Verificar()
         {
@@ -74,7 +77,6 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("Estado no valido");
             }
-            //Verificar datetime
             if (Realizador == null)
             {
                 throw new Exception("Realizador no valido");

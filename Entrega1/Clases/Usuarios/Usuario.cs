@@ -21,7 +21,6 @@ namespace Entrega1.Clases.Usuarios
         {
             Id = _ultimoId++;
         }
-
         public Usuario(string nombre, string apellido, string email, string pass) : this()
         {
             Nombre = nombre;
@@ -29,7 +28,6 @@ namespace Entrega1.Clases.Usuarios
             Email = email;
             Pass = pass;
         }
-
         public override string ToString()
         {
             return $"{Nombre}, {Apellido}, {Email}, {Pass}, {Id}";
@@ -57,7 +55,6 @@ namespace Entrega1.Clases.Usuarios
         public  override bool Equals(object? obj)
         {
             return obj is Usuario usuario && Email == usuario.Email;
-
         }
     }
 }

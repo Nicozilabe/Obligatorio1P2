@@ -7,10 +7,7 @@ namespace Entrega1
     {
         static void Main(string[] args)
         {
-
-
             Sistema s = Sistema.GetInstancia();
-
 
             int op = -1;
             while (op != 0)
@@ -18,7 +15,7 @@ namespace Entrega1
                 Console.Clear();
                 Console.WriteLine("1 - Mostrar lista de Clientes");
                 Console.WriteLine("2 - Elija por Categoria su articulo");
-                Console.WriteLine("3 - Alta de articulo!");
+                Console.WriteLine("3 - ¡Alta de articulo!");
                 Console.WriteLine("4 - Encuentre Publicaciones por fechas dadas");
                 Console.WriteLine("0 - Salir");
 
@@ -41,8 +38,8 @@ namespace Entrega1
                 else if (op == 2)
                 {
                     Console.Clear();
-                    Console.WriteLine("Búsqueda de articulos por categoria \n");
-                    Console.WriteLine("Ingrese categoría \n");
+                    Console.WriteLine("Búsqueda de articulos por categoria. \n");
+                    Console.WriteLine("Ingrese categoría. \n");
                     string c = Console.ReadLine();
                     List<Articulo> articulos = new List<Articulo>();
                     try
@@ -57,56 +54,45 @@ namespace Entrega1
                                 Console.WriteLine(a);
                             }
                             Console.WriteLine("------ Fin ------");
-                            
                         }
                         else
                         {
-                            Console.WriteLine("No hay articulos con esa categoría");
+                            Console.WriteLine("No hay articulos con esa categoría.");
                         }
                     }
-                    catch (Exception ex) { Console.WriteLine($"Error {ex.Message}."); }
-                    Console.WriteLine("Presione una tecla para volver al menú");
+                    catch (Exception ex) { 
+                        Console.WriteLine($"Error {ex.Message}."); 
+                    }
+                    Console.WriteLine("Presione una tecla cualquiera para volver al menú.");
                     Console.ReadKey();
                 }
                 else if (op == 3)
                 {
-                    ////No nos olvidemos de las excepciones aqui.
                     Console.Clear();
                     Console.WriteLine("Alta de Articulos");
-
                     try
                     {
-                        Console.WriteLine("Ingrese el nombre");
-
-
+                        Console.WriteLine("Ingrese el nombre.");
                         string nombre = Console.ReadLine();
-
-
-                        Console.WriteLine("Ingrese la categoria");
-
+                        Console.WriteLine("Ingrese la categoria.");
                         string categoria = Console.ReadLine();
-
-
-
-                        Console.WriteLine("Ingrese el precio");
-
+                        Console.WriteLine("Ingrese el precio.");
                         double precio = double.Parse(Console.ReadLine());
 
                         Articulo nuevo = new Articulo(nombre, categoria, precio);
 
                         s.AltaArticulo(nuevo);
-                        Console.WriteLine("Articulo Agregado exitosamente, pulse una tecla para volver al menú.");
+                        Console.WriteLine("Articulo Agregado exitosamente. Pulse una tecla cualquiera para volver al menú.");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"El articulo no se pudo agregar: {ex.Message}, presione una tecla para volver al menú.");
-                    };
+                        Console.WriteLine($"El articulo no se pudo agregar: {ex.Message}. Presione una tecla cualuiera para volver al menú.");
+                    }
                     Console.ReadKey();
                 }
                 else if (op == 4)
                 {
                     Console.Clear();
-
                     try
                     {
                         Console.WriteLine("Ingrese fecha inicio busqueda (DD-MM-AAAA):");
@@ -125,7 +111,6 @@ namespace Entrega1
                                 Console.WriteLine(p);
                             }
                             Console.WriteLine("------ Fin ------");
-
                         }
                         else
                         {
@@ -133,7 +118,7 @@ namespace Entrega1
                         }
                     }
                     catch (Exception ex) { Console.WriteLine($"Error {ex.Message}."); }
-                    Console.WriteLine("Presione una tecla para volver al menú");
+                    Console.WriteLine("Presione una tecla cualquiera para volver al menú");
                     Console.ReadKey();
                 }
             }

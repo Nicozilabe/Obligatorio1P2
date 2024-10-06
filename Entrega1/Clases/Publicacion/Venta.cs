@@ -31,9 +31,8 @@ namespace Entrega1.Clases.Publicacion
             base.Verificar();
             if (string.IsNullOrEmpty(EstadoVenta))
             {
-                throw new Exception("Estado venta no valido");
+                throw new Exception("Estado de venta no valido.");
             }
-
         }
     }
 }

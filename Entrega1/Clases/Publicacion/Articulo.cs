@@ -20,14 +20,12 @@ namespace Entrega1.Clases.Publicacion
         {
             Id = _ultimoId++;
         }
-
         public Articulo(string nombre, string categoria, double precio) : this()
         {
             Nombre = nombre;
             Categoria = categoria;
             Precio = precio;
         }
-
         public override string ToString()
         {
             return $"{Nombre}, {Categoria}, {Precio}, id:{Id}";
@@ -47,13 +45,11 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("Precio no valido");
             }
-
         }
 
         public override bool Equals(object? obj)
         {
             return obj is Articulo articulo && Nombre  == articulo.Nombre;
-
         }
     }
 }

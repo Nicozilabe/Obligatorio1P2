@@ -23,8 +23,8 @@ namespace Entrega1.Clases.Publicacion
         public override string ToString()
         {
             return "Subasta: " + base.ToString() + $", Cantidad de ofertas{_ofertas.Count()}";
-
         }
+        
         public void OfertaValida(Oferta o)
         {
             if (_ofertas.Contains(o))
@@ -41,14 +41,13 @@ namespace Entrega1.Clases.Publicacion
                     }
                 }
             }
-
         }
+
         public void AgregarOferta(Oferta o)
         {
             o.Verificar();
             OfertaValida(o);
             _ofertas.Add(o);
         }
-
     }
 }

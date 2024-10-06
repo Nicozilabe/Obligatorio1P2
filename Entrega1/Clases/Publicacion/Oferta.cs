@@ -14,7 +14,6 @@ namespace Entrega1.Clases.Publicacion
         public int Id { get; set; }
         public double Monto { get; set; }
         public Cliente Usuario { get; set; }
-        //Le cambio algo?
         public DateTime Fecha { get; set; }
 
         public Oferta()
@@ -47,12 +46,10 @@ namespace Entrega1.Clases.Publicacion
         public int CompareTo(Oferta? other)
         {
             return (Monto.CompareTo(other.Monto));
-
         }
         public override bool Equals(object? obj)
         {
-            return obj is Oferta oferta && Monto == oferta.Monto && Usuario == oferta.Usuario;
-                
+            return obj is Oferta oferta && Monto == oferta.Monto && Usuario == oferta.Usuario;    
         }
     }
 }
