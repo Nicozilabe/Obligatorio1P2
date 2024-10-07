@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Entrega1.Clases.Publicacion;
 using Entrega1.Clases.Usuarios;
@@ -254,7 +255,7 @@ namespace Entrega1
             List<Articulo> ret = new List<Articulo>();
             foreach(Articulo a in _articulos)
             {
-                if (a.Categoria.ToLower() == c.ToLower())
+                if (Regex.Replace(a.Categoria.ToLower().Normalize(NormalizationForm.FormD), @"[^a-zA-z0-9 ]+", "") == c.ToLower())
                 {
                     ret.Add(a);
                 }

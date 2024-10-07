@@ -1,5 +1,7 @@
 ﻿using Entrega1.Clases.Publicacion;
 using Entrega1.Clases.Usuarios;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace Entrega1
 {
@@ -19,7 +21,15 @@ namespace Entrega1
                 Console.WriteLine("4 - Encuentre Publicaciones por fechas dadas");
                 Console.WriteLine("0 - Salir");
 
-                op = int.Parse(Console.ReadLine());
+                try
+                {
+                    op = int.Parse(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error : {e.Message}, presione una tecla para volver a intentar.");
+                    Console.ReadKey();
+                }
 
                 if (op == 1)
                 {
@@ -40,7 +50,7 @@ namespace Entrega1
                     Console.Clear();
                     Console.WriteLine("Búsqueda de articulos por categoria. \n");
                     Console.WriteLine("Ingrese categoría. \n");
-                    string c = Console.ReadLine();
+                    string c = Regex.Replace(Console.ReadLine().Normalize(NormalizationForm.FormD), @"[^a-zA-z0-9 ]+", "");
                     List<Articulo> articulos = new List<Articulo>();
                     try
                     {
@@ -60,8 +70,9 @@ namespace Entrega1
                             Console.WriteLine("No hay articulos con esa categoría.");
                         }
                     }
-                    catch (Exception ex) { 
-                        Console.WriteLine($"Error {ex.Message}."); 
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error {ex.Message}.");
                     }
                     Console.WriteLine("Presione una tecla cualquiera para volver al menú.");
                     Console.ReadKey();
@@ -100,8 +111,8 @@ namespace Entrega1
                         Console.WriteLine("\nIngrese fecha fin busqueda (DD-MM-AAAA):");
                         DateTime fin = DateTime.Parse(Console.ReadLine());
                         List<Publicacion> publicaciones = new List<Publicacion>();
-                        publicaciones = s.GetPublicacionesPorFecha(inicio,fin);
-;
+                        publicaciones = s.GetPublicacionesPorFecha(inicio, fin);
+                        ;
                         if (publicaciones.Count != 0)
                         {
                             Console.WriteLine("Publicaciónes");
