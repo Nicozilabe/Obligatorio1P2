@@ -15,7 +15,7 @@ namespace Entrega1
         private List<Articulo> _articulos = new List<Articulo>();
         private List<Usuario> _usuarios = new List<Usuario>();
         private List<Publicacion> _publicaciones = new List<Publicacion>();
-        private static Sistema? instancia = null;
+        private static Sistema? _instancia = null;
 
         private Sistema()
         {
@@ -168,11 +168,11 @@ namespace Entrega1
         public static Sistema GetInstancia()
         {
             // Es para que no se dupliquen las instancias de Sistema.
-            if (instancia == null)
+            if (_instancia == null)
             {
-                instancia = new Sistema();
+                _instancia = new Sistema();
             }
-            return instancia;
+            return _instancia;
         }
         public List<Cliente> GetClientes()
         {

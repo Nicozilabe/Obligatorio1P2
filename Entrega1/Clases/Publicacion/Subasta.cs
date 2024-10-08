@@ -30,7 +30,7 @@ namespace Entrega1.Clases.Publicacion
         {
             return "Subasta: " + base.ToString() + $", Cantidad de ofertas{_ofertas.Count()}";
         }
-        
+        //valida si no hay una oferta igual o de mayor valor
         public void OfertaValida(Oferta o)
         {
             if (_ofertas.Contains(o))
