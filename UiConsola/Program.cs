@@ -65,7 +65,14 @@ namespace UiConsola
                     {
 
                         string c = Regex.Replace(Console.ReadLine().Normalize(NormalizationForm.FormD), @"[^a-zA-z0-9 ]+", "");
-                        articulos = s.BuscarPorCategoria(c);
+                        if (string.IsNullOrEmpty(c))
+                        {
+                            throw new Exception("Categoría no válida");
+                        }
+                        else
+                        {
+                            articulos = s.BuscarPorCategoria(c);
+                        }
                         if (articulos.Count != 0)
                         {
                             Console.WriteLine("Articulos");
@@ -101,13 +108,13 @@ namespace UiConsola
                         Console.WriteLine("Ingrese el precio.");
                         double precio = double.Parse(Console.ReadLine());
                         string error = "";
-                        if (Double.IsNaN(precio) || (precio < 0))
+                        if (Double.IsNaN(precio) || (precio <= 0))
                         {
-                            error += "Precio no valido";
+                            error += "Precio no valido,";
                         }
                         if (string.IsNullOrEmpty(nombre))
                         {
-                            error += " Nombre no valido";
+                            error += " Nombre no valido,";
                         }
                         if (string.IsNullOrEmpty(categoria))
                         {
@@ -143,6 +150,7 @@ namespace UiConsola
                         DateTime inicio = DateTime.Parse(Console.ReadLine());
                         Console.WriteLine("\nIngrese fecha fin busqueda (DD-MM-AAAA):");
                         DateTime fin = DateTime.Parse(Console.ReadLine());
+                        //No consideramos necesaria más validacion de la que realiza el parce tirando error si no es correcto el input
                         List<Publicacion> publicaciones = new List<Publicacion>();
                         publicaciones = s.GetPublicacionesPorFecha(inicio, fin);
                         ;
@@ -166,7 +174,7 @@ namespace UiConsola
                     Console.ReadKey();
                 }
             }
-            Console.ReadKey();
+            
         }
     }
 

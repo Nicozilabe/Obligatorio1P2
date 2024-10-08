@@ -251,7 +251,7 @@ namespace Entrega1
         // Parte 2 del menu en Program.
         public List<Articulo> BuscarPorCategoria(string c)
         {
-            VerificarCategoria(c);
+            //VerificarCategoria(c); realizamos la validación en el program (que no sea vacía)
             List<Articulo> ret = new List<Articulo>();
             foreach(Articulo a in _articulos)
             {
@@ -262,13 +262,13 @@ namespace Entrega1
             }
             return ret;
         }
-        private void VerificarCategoria(string c)
-        {
-            if (string.IsNullOrEmpty(c))
-            {
-                throw new Exception("Categoría no valida");
-            }
-        }
+        //private void VerificarCategoria(string c)
+        //{
+        //    if (string.IsNullOrEmpty(c))
+        //    {
+        //        throw new Exception("Categoría no valida");
+        //    }
+        //}
         
         // Parte 4 del menu en Program.
         public List<Publicacion> GetPublicacionesPorFecha(DateTime inicio, DateTime fin)
