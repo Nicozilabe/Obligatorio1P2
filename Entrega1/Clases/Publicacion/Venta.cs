@@ -12,18 +12,27 @@ namespace Entrega1.Clases.Publicacion
     {
         public string EstadoVenta { get; set; }
         // Esto probablemente no sea String.
-
-        public Venta()
+        public bool EsOfertaRelampago { get; set; }
+        //constructor posta
+        public Venta(string nombre) : base(nombre)
         {
 
         }
-        public Venta(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, bool esOfertaRelampago, Cliente comprador, DateTime fechaDeFin, string estadoVenta) : base(nombre, estado, fechaPublicacion, realizador, esOfertaRelampago, comprador, fechaDeFin)
+        //Constructor precarga
+        public Venta(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, bool esOfertaRelampago, Cliente comprador, DateTime fechaDeFin, string estadoVenta) : base(nombre, estado, fechaPublicacion, realizador, comprador, fechaDeFin)
         {
             EstadoVenta = estadoVenta;
+            EsOfertaRelampago = esOfertaRelampago;
         }
+
         public override string ToString()
         {
-            return "Venta: "+base.ToString() + $",{EstadoVenta}";
+            string s = "No es oferta relampago";
+            if (EsOfertaRelampago)
+            {
+                s = "Es oferta relampago";
+            }
+            return "Venta: " + base.ToString() + $",{EstadoVenta}, {s}";
         }
 
         public override void Verificar()

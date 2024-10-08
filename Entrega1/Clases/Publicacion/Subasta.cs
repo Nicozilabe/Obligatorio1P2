@@ -16,7 +16,13 @@ namespace Entrega1.Clases.Publicacion
         {
 
         }
-        public Subasta(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, bool esOfertaRelampago, Cliente comprador, DateTime fechaDeFin) : base(nombre, estado, fechaPublicacion, realizador, esOfertaRelampago, comprador, fechaDeFin)
+        //contructor posta
+        public Subasta(string nombre) : base(nombre)
+        {
+
+        }
+        //constructor precarga
+        public Subasta(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador,  Cliente comprador, DateTime fechaDeFin) : base(nombre, estado, fechaPublicacion, realizador, comprador, fechaDeFin)
         {
 
         }

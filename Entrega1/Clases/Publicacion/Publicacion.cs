@@ -18,26 +18,36 @@ namespace Entrega1.Clases.Publicacion
         // Prob enumerado.
         public DateTime FechaPublicacion { get; set; }
         private List<Articulo> Articulos = new List<Articulo>();
-        public Cliente Realizador { get; set; }
-        public bool EsOfertaRelampago { get; set; }
-        public Cliente Comprador { get; set; }
-        public DateTime FechaDeFin { get; set; }
+        public Cliente? Realizador { get; set; }
+        
+        public Cliente? Comprador { get; set; }
+        public DateTime? FechaDeFin { get; set; }
 
         public Publicacion()
         {
             _ultimoId++;
         }
-        public Publicacion(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, bool esOfertaRelampago, Cliente comprador, DateTime fechaDeFin) : this()
+        //Constructor para precarga
+        public Publicacion(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, Cliente comprador, DateTime fechaDeFin) : this()
         {
             Nombre = nombre;
             Estado = estado;
             FechaPublicacion = fechaPublicacion;
             Realizador = realizador;
-            EsOfertaRelampago = esOfertaRelampago;
             Comprador = comprador;
             FechaDeFin = fechaDeFin;
         }
+        //constructor posta
+        public Publicacion(string nombre)
+        {
+            Nombre = nombre;
+            Estado = "ABIERTO";
+            FechaPublicacion = DateTime.Now;
+            Realizador = null;
+            Comprador = null;
+            FechaDeFin = null;
 
+        }
         // Para saber que artículos tiene cada publicación.
         public List<Articulo> GetArticulos()
         {
@@ -61,10 +71,7 @@ namespace Entrega1.Clases.Publicacion
             {
                 real = Realizador.Nombre;
             }
-            if (EsOfertaRelampago) { 
-                s = "Es oferta relampago"; 
-            }
-            return $"{Nombre}, {Estado}, {FechaPublicacion}, {real}, {s}, {comp}, {FechaDeFin}";
+            return $"{Nombre}, {Estado}, {FechaPublicacion}, {real}, {comp}, {FechaDeFin}";
         }
 
         public virtual void Verificar()
@@ -77,14 +84,7 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("Estado no valido");
             }
-            if (Realizador == null)
-            {
-                throw new Exception("Realizador no valido");
-            }
-            //if (Comprador == null)
-            //{
-            //    throw new Exception("Realizador no valido");
-            //}
+
         }
     }
 }
