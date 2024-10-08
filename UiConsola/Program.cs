@@ -1,9 +1,10 @@
-﻿using Entrega1.Clases.Publicacion;
-using Entrega1.Clases.Usuarios;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Text;
+using Entrega1.Clases.Publicacion;
+using Entrega1;
+using Entrega1.Clases.Usuarios;
 
-namespace Entrega1
+namespace UiConsola
 {
     internal class Program
     {
@@ -49,7 +50,7 @@ namespace Entrega1
                     else
                     {
                         Console.WriteLine("Lista de clientes vacía.");
-                    }        
+                    }
                     Console.WriteLine("Presione una tecla para volver al menú.");
                     Console.ReadKey();
                 }
@@ -58,10 +59,12 @@ namespace Entrega1
                     Console.Clear();
                     Console.WriteLine("Búsqueda de articulos por categoria. \n");
                     Console.WriteLine("Ingrese categoría. \n");
-                    string c = Regex.Replace(Console.ReadLine().Normalize(NormalizationForm.FormD), @"[^a-zA-z0-9 ]+", "");
+
                     List<Articulo> articulos = new List<Articulo>();
                     try
                     {
+
+                        string c = Regex.Replace(Console.ReadLine().Normalize(NormalizationForm.FormD), @"[^a-zA-z0-9 ]+", "");
                         articulos = s.BuscarPorCategoria(c);
                         if (articulos.Count != 0)
                         {
@@ -97,11 +100,33 @@ namespace Entrega1
                         string categoria = Console.ReadLine();
                         Console.WriteLine("Ingrese el precio.");
                         double precio = double.Parse(Console.ReadLine());
+                        string error = "";
+                        if (Double.IsNaN(precio) || (precio < 0))
+                        {
+                            error += "Precio no valido";
+                        }
+                        if (string.IsNullOrEmpty(nombre))
+                        {
+                            error += " Nombre no valido";
+                        }
+                        if (string.IsNullOrEmpty(categoria))
+                        {
+                            error += " Categoria no válida";
+                        }
 
-                        Articulo nuevo = new Articulo(nombre, categoria, precio);
+                        if (error == "")
+                        {
+                            Articulo nuevo = new Articulo(nombre, categoria, precio);
 
-                        s.AltaArticulo(nuevo);
-                        Console.WriteLine("Articulo Agregado exitosamente. Pulse una tecla cualquiera para volver al menú.");
+                            s.AltaArticulo(nuevo);
+                            Console.WriteLine("Articulo Agregado exitosamente. Pulse una tecla cualquiera para volver al menú.");
+                        }
+                        else
+                        {
+                            throw new Exception(error);
+                        }
+
+
                     }
                     catch (Exception ex)
                     {
@@ -144,4 +169,5 @@ namespace Entrega1
             Console.ReadKey();
         }
     }
+
 }
