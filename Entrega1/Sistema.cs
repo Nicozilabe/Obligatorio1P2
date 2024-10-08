@@ -95,20 +95,20 @@ namespace Entrega1
             AltaArticulo(new Articulo("Kamasutra", "Lectura", 600));
 
             // Subasta 1 - Sin ofertas
-            AltaSubasta(new Subasta("Cámara Canon", "ABIERTA", DateTime.Now.AddDays(-10), _usuarios[4] as Cliente, null, DateTime.Now.AddDays(20)));
+            AltaSubasta(new Subasta("Cámara Canon", "ABIERTA", DateTime.Now.AddDays(-10), null, null, DateTime.Now.AddDays(20)));
 
             // Subasta 2 - Sin ofertas
-            AltaSubasta(new Subasta("Smart TV LG", "ABIERTA", DateTime.Now.AddDays(-25), _usuarios[3] as Cliente, null, DateTime.Now.AddDays(15)));
+            AltaSubasta(new Subasta("Smart TV LG", "ABIERTA", DateTime.Now.AddDays(-25), null, null, DateTime.Now.AddDays(15)));
 
 
             // Subasta 3 - Con ofertas
-            Subasta subas1 = new Subasta("Laptop HP", "ABIERTA", DateTime.Now.AddDays(-12), _usuarios[2] as Cliente, null, DateTime.Now.AddDays(18));
+            Subasta subas1 = new Subasta("Laptop HP", "ABIERTA", DateTime.Now.AddDays(-12), null, null, DateTime.Now.AddDays(18));
             subas1.AgregarOferta(new Oferta(26000, _usuarios[1] as Cliente, DateTime.Now.AddDays(-10)));
             subas1.AgregarOferta(new Oferta(27000, _usuarios[2] as Cliente, DateTime.Now.AddDays(-8)));
             AltaSubasta(subas1);
 
             // Subasta 4 - Con ofertas
-            Subasta subas2 = new Subasta("Consola PlayStation", "ABIERTA", DateTime.Now.AddDays(-18), _usuarios[6] as Cliente, null, DateTime.Now.AddDays(22));
+            Subasta subas2 = new Subasta("Consola PlayStation", "ABIERTA", DateTime.Now.AddDays(-18), null, null, DateTime.Now.AddDays(22));
             subas2.AgregarOferta(new Oferta(56000, _usuarios[4] as Cliente, DateTime.Now.AddDays(-16)));
             subas2.AgregarOferta(new Oferta(57000, _usuarios[6] as Cliente, DateTime.Now.AddDays(-14)));
             AltaSubasta(subas2);
@@ -118,19 +118,19 @@ namespace Entrega1
             AltaSubasta(new Subasta("Bicicleta Mountain Bike", "ABIERTA", DateTime.Now.AddDays(-21), null, null, DateTime.Now.AddDays(20)));
 
             // Subasta 6 - Sin ofertas
-            AltaSubasta(new Subasta("Juegos de PS5", "ABIERTA", DateTime.Now.AddDays(-35), _usuarios[3] as Cliente, null, DateTime.Now.AddDays(25)));
+            AltaSubasta(new Subasta("Juegos de PS5", "ABIERTA", DateTime.Now.AddDays(-35), null, null, DateTime.Now.AddDays(25)));
 
             // Subasta 7 - Sin ofertas
-            AltaSubasta(new Subasta("Sudadera Nike", "ABIERTA", DateTime.Now.AddDays(-27), _usuarios[5] as Cliente, null, DateTime.Now.AddDays(15)));
+            AltaSubasta(new Subasta("Sudadera Nike", "ABIERTA", DateTime.Now.AddDays(-27), null, null, DateTime.Now.AddDays(15)));
 
             // Subasta 8 - Sin ofertas
-            AltaSubasta(new Subasta("Aspiradora Bosch", "ABIERTA", DateTime.Now.AddDays(-14), _usuarios[10] as Cliente, null, DateTime.Now.AddDays(10)));
+            AltaSubasta(new Subasta("Aspiradora Bosch", "ABIERTA", DateTime.Now.AddDays(-14), null, null, DateTime.Now.AddDays(10)));
 
             // Subasta 9 - Sin ofertas
-            AltaSubasta(new Subasta("Impresora HP", "ABIERTA", DateTime.Now.AddDays(-20), _usuarios[9] as Cliente, null, DateTime.Now.AddDays(17)));
+            AltaSubasta(new Subasta("Impresora HP", "ABIERTA", DateTime.Now.AddDays(-20), null, null, DateTime.Now.AddDays(17)));
 
             // Subasta 10 - Sin ofertas
-            AltaSubasta(new Subasta("Auriculares Sony", "ABIERTA", DateTime.Now.AddDays(-7), _usuarios[8] as Cliente, null, DateTime.Now.AddDays(15)));
+            AltaSubasta(new Subasta("Auriculares Sony", "ABIERTA", DateTime.Now.AddDays(-7), null, null, DateTime.Now.AddDays(15)));
 
 
 
@@ -159,7 +159,7 @@ namespace Entrega1
             AltaVenta(new Venta("Lavadora LG", "COMPLETADA", DateTime.Now.AddDays(-12), _usuarios[7] as Cliente, false, _usuarios[7] as Cliente, DateTime.Now.AddDays(-10), "COMPLETADA"));
 
             // Venta 9
-            AltaVenta(new Venta("Consola Xbox", "COMPLETADA", DateTime.Now.AddDays(-18), _usuarios[10] as Cliente, false, _usuarios[10] as Cliente, DateTime.Now.AddDays(-15), "COMPLETADA"));
+            AltaVenta(new Venta("Consola Xbox", "COMPLETADA", DateTime.Now.AddDays(-18), _usuarios[0] as Cliente, false, _usuarios[0] as Cliente, DateTime.Now.AddDays(-15), "COMPLETADA"));
 
             // Venta 10
             AltaVenta(new Venta("Parlante JBL", "COMPLETADA", DateTime.Now.AddDays(-8), _usuarios[2] as Cliente, false, _usuarios[2] as Cliente, DateTime.Now.AddDays(-5), "COMPLETADA"));

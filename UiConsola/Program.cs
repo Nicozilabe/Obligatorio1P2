@@ -162,7 +162,7 @@ namespace UiConsola
                             {
                                 Console.WriteLine(p);
                             }
-                            Console.WriteLine("------ Fin ------");
+                            Console.WriteLine("\n------ Fin ------");
                         }
                         else
                         {
