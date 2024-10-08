@@ -150,7 +150,7 @@ namespace Entrega1
             AltaVenta(new Venta("Cafetera Nespresso", "COMPLETADA", DateTime.Now.AddDays(-28), _usuarios[8] as Cliente, false, _usuarios[8] as Cliente, DateTime.Now.AddDays(-25), "COMPLETADA"));
 
             // Venta 6
-            AltaVenta(new Venta("Silla Gamer", "COMPLETADA", DateTime.Now.AddDays(-32), _usuarios[3] as Cliente, false, _usuarios[6] as Cliente, DateTime.Now.AddDays(-28), "COMPLETADA"));
+            AltaVenta(new Venta("Silla Gamer", "COMPLETADA", DateTime.Now.AddDays(-32), _usuarios[3] as Cliente, false, _usuarios[3] as Cliente, DateTime.Now.AddDays(-28), "COMPLETADA"));
 
             // Venta 7
             AltaVenta(new Venta("Batería de Cocina", "COMPLETADA", DateTime.Now.AddDays(-38), _usuarios[2] as Cliente, false, _usuarios[2] as Cliente, DateTime.Now.AddDays(-35), "COMPLETADA"));
