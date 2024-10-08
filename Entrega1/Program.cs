@@ -34,14 +34,22 @@ namespace Entrega1
                 if (op == 1)
                 {
                     Console.Clear();
-                    Console.WriteLine("Lista clientes:");
-                    Console.WriteLine("----- Inicio -----");
+
                     List<Cliente> clientes = s.GetClientes();
-                    foreach (Cliente c in clientes)
+                    if (clientes.Count > 0)
                     {
-                        Console.WriteLine(c);
+                        Console.WriteLine("Lista clientes:");
+                        Console.WriteLine("----- Inicio -----");
+                        foreach (Cliente c in clientes)
+                        {
+                            Console.WriteLine(c);
+                        }
+                        Console.WriteLine("------ Fin ------");
                     }
-                    Console.WriteLine("------ Fin ------");
+                    else
+                    {
+                        Console.WriteLine("Lista de clientes vacía.");
+                    }        
                     Console.WriteLine("Presione una tecla para volver al menú.");
                     Console.ReadKey();
                 }
