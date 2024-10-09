@@ -132,7 +132,16 @@ namespace Entrega1
             // Subasta 10 - Sin ofertas
             AltaSubasta(new Subasta("Auriculares Sony", "ABIERTA", DateTime.Now.AddDays(-7), null, null, DateTime.Now.AddDays(15)));
 
-
+            _publicaciones[0].AgregarArticulo(_articulos[4]);
+            _publicaciones[1].AgregarArticulo(_articulos[3]);
+            _publicaciones[2].AgregarArticulo(_articulos[0]);
+            _publicaciones[3].AgregarArticulo(_articulos[20]);
+            _publicaciones[4].AgregarArticulo(_articulos[24]);
+            _publicaciones[5].AgregarArticulo(_articulos[22]);
+            _publicaciones[6].AgregarArticulo(_articulos[30]);
+            _publicaciones[7].AgregarArticulo(_articulos[19]);
+            _publicaciones[8].AgregarArticulo(_articulos[10]);
+            _publicaciones[9].AgregarArticulo(_articulos[6]);
 
             // Venta 1
             AltaVenta(new Venta("Laptop HP", "COMPLETADA", DateTime.Now.AddDays(-45), _usuarios[9] as Cliente, false, _usuarios[9] as Cliente, DateTime.Now.AddDays(-40), "COMPLETADA"));
@@ -163,6 +172,17 @@ namespace Entrega1
 
             // Venta 10
             AltaVenta(new Venta("Parlante JBL", "COMPLETADA", DateTime.Now.AddDays(-8), _usuarios[2] as Cliente, false, _usuarios[2] as Cliente, DateTime.Now.AddDays(-5), "COMPLETADA"));
+
+            _publicaciones[10].AgregarArticulo(_articulos[0]);
+            _publicaciones[11].AgregarArticulo(_articulos[1]);
+            _publicaciones[12].AgregarArticulo(_articulos[2]);
+            _publicaciones[13].AgregarArticulo(_articulos[9]);
+            _publicaciones[14].AgregarArticulo(_articulos[13]);
+            _publicaciones[15].AgregarArticulo(_articulos[11]);
+            _publicaciones[16].AgregarArticulo(_articulos[44]);
+            _publicaciones[17].AgregarArticulo(_articulos[15]);
+            _publicaciones[18].AgregarArticulo(_articulos[21]);
+            _publicaciones[19].AgregarArticulo(_articulos[5]);
         }
 
         public static Sistema GetInstancia()

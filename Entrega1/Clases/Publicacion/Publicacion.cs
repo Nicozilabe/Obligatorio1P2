@@ -25,7 +25,7 @@ namespace Entrega1.Clases.Publicacion
 
         public Publicacion()
         {
-            _ultimoId++;
+            Id=_ultimoId++;
         }
         //Constructor para precarga
         public Publicacion(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, Cliente comprador, DateTime fechaDeFin) : this()
@@ -71,7 +71,7 @@ namespace Entrega1.Clases.Publicacion
             {
                 real = Realizador.Nombre;
             }
-            return $"{Nombre}, {Estado}, {FechaPublicacion}, {real}, {comp}, {FechaDeFin}";
+            return $"Id:{Id}, {Nombre},Cantidad artículos:{Articulos.Count()} {Estado}, {FechaPublicacion}, {real}, {comp}, {FechaDeFin}";
         }
 
         public virtual void Verificar()
