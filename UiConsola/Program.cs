@@ -3,6 +3,7 @@ using System.Text;
 using Entrega1.Clases.Publicacion;
 using Entrega1;
 using Entrega1.Clases.Usuarios;
+using System.Reflection.Metadata;
 
 namespace UiConsola
 {
@@ -152,21 +153,45 @@ namespace UiConsola
                         DateTime fin = DateTime.Parse(Console.ReadLine());
                         //No consideramos necesaria más validacion de la que realiza el parce tirando error si no es correcto el input
                         List<Publicacion> publicaciones = new List<Publicacion>();
-                        publicaciones = s.GetPublicacionesPorFecha(inicio, fin);
-                        ;
-                        if (publicaciones.Count != 0)
+                        string errores = "";
+                        if (inicio > DateTime.Now)
                         {
-                            Console.WriteLine("Publicaciónes");
-                            Console.WriteLine("----- Inicio -----");
-                            foreach (Publicacion p in publicaciones)
+                            errores += "La fecha de inicio no puede ser superior a la actual";
+                        }
+                        if (fin > DateTime.Now)
+                        {
+                            errores += " La fecha de inicio no puede ser superior a la actual";
+                        }
+                        if (inicio > fin)
+                        {
+                            errores += " La fecha de inicio no puede ser mayor a la de fin";
+                        }
+                        if (inicio < DateTime.Parse("31-12-2015"))
+                        {
+                            errores += " La fecha de inicio de busqueda no puede ser menor al 31 de diciembre de 2015";
+                        }
+                        if (errores == "")
+                        {
+                            publicaciones = s.GetPublicacionesPorFecha(inicio, fin);
+                            ;
+                            if (publicaciones.Count != 0)
                             {
-                                Console.WriteLine(p);
+                                Console.WriteLine("Publicaciónes");
+                                Console.WriteLine("----- Inicio -----");
+                                foreach (Publicacion p in publicaciones)
+                                {
+                                    Console.WriteLine(p);
+                                }
+                                Console.WriteLine("\n------ Fin ------");
                             }
-                            Console.WriteLine("\n------ Fin ------");
+                            else
+                            {
+                                Console.WriteLine("No hay publicaciones entre esas fechas");
+                            }
                         }
                         else
                         {
-                            Console.WriteLine("No hay publicaciones entre esas fechas");
+                            throw new Exception(errores);
                         }
                     }
                     catch (Exception ex) { Console.WriteLine($"Error {ex.Message}."); }
