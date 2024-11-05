@@ -80,10 +80,6 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("Nombre no valido");
             }
-            if (string.IsNullOrEmpty(Estado))
-            {
-                throw new Exception("Estado no valido");
-            }
 
         }
     }

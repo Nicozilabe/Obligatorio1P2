@@ -310,12 +310,15 @@ namespace Entrega1
         public Cliente GetCliente(int idCliente) {
             Cliente cliente = null;
             bool encontrado = false;
-            foreach(Cliente c in GetClientes())
+            List<Cliente> clientes = GetClientes();
+            foreach (Cliente c in clientes)
             {
                 if (c.Id == idCliente)
                 {
                     cliente = c;
                     encontrado = true;
+                    //acá no hay dios que los proteja
+                    break;
                 } 
             }
             return (cliente);
