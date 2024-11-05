@@ -41,6 +41,10 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("Usuario no valido");
             }
+            if (Usuario.SaldoSuficiente(Monto))
+            {
+                throw new Exception("Saldo no válido para ofertar");
+            }
         }
 
         public int CompareTo(Oferta? other)

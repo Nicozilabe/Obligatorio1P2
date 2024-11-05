@@ -249,10 +249,6 @@ namespace Entrega1
             }
         }
         
-        //public void AltaOferta(Oferta o, int idPublicación)
-        //{
-        //     no es necesario aun
-        //}
 
         public void ArticuloExistente(Articulo x)
         {
@@ -284,13 +280,6 @@ namespace Entrega1
             }
             return ret;
         }
-        //private void VerificarCategoria(string c)
-        //{
-        //    if (string.IsNullOrEmpty(c))
-        //    {
-        //        throw new Exception("Categoría no valida");
-        //    }
-        //}
         
         // Parte 4 del menu en Program.
         public List<Publicacion> GetPublicacionesPorFecha(DateTime inicio, DateTime fin)
@@ -333,17 +322,33 @@ namespace Entrega1
                 cliente.CargarSaldo(monto); 
             }
         }
-        public void RestarSaldoAUser(int idUser, int monto)
+        public  List<Subasta> GetSubastas(){
+            List < Subasta > subastas = new List < Subasta >();
+            foreach (Publicacion p in GetPublicaciones())
+            {
+                if(p is Subasta s)
+                {
+                    subastas.Add(s);
+                }
+            }
+            return subastas;
+        }
+        public Subasta GetSubastaById(int idSubasta)
         {
-            Cliente cliente = GetCliente(idUser);
-            if (cliente == null)
+            Subasta res = null;
+            foreach(Subasta s in GetSubastas())
             {
-                throw new Exception("Usuario no válido");
+                if (s.Id == idSubasta)
+                {
+                    res = s;
+                }
             }
-            else
-            {
-                cliente.DescontarSaldo(monto);
-            }
+            return res;
+        }
+        public void AgregarOferta(int idCliente, int idSubasta,double monto)
+        {
+            Subasta s = GetSubastaById(idSubasta);
+
         }
 
     }

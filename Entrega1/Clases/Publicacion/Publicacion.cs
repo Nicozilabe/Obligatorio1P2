@@ -82,5 +82,11 @@ namespace Entrega1.Clases.Publicacion
             }
 
         }
+        public void RestarSaldo(double monto)
+        {
+            Comprador.DescontarSaldo(monto);
+        }
+        public abstract void CerrarPublicacion();
+
     }
 }

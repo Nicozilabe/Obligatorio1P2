@@ -52,5 +52,9 @@ namespace Entrega1.Clases.Usuarios
                 Saldo -= montonero;
             };
         }
+        public bool SaldoSuficiente(double monto)
+        {
+            return (Saldo >= monto);
+        }
     }
 }

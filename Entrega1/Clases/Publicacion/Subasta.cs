@@ -55,5 +55,12 @@ namespace Entrega1.Clases.Publicacion
             OfertaValida(o);
             _ofertas.Add(o);
         }
+
+        public override void CerrarPublicacion()
+        {
+            //para hacer
+            var o = _ofertas.Last();
+           
+        }
     }
 }
