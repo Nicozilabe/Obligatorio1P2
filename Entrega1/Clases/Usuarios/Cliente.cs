@@ -32,5 +32,25 @@ namespace Entrega1.Clases.Usuarios
                 throw new Exception("Saldo no valido");
             }
         }
+        // Metodo para cargar saldo.
+        public void CargarSaldo(double montonero)
+        {
+            if (montonero < 0 || double.IsNaN(montonero)) { 
+                throw new Exception("Monto ingresado no válido"); 
+            } else {
+                Saldo += montonero;
+            };
+        }
+        public void DescontarSaldo(double montonero)
+        {
+            if (montonero < 0 || double.IsNaN(montonero))
+            {
+                throw new Exception("Monto a descontar no válido");
+            }
+            else
+            {
+                Saldo -= montonero;
+            };
+        }
     }
 }

@@ -307,28 +307,41 @@ namespace Entrega1
             }
             return ret;
         }
-        //Movido a program adaptado
-        //private void VerificarFecha(DateTime inicio, DateTime fin) {
-        //    string errores = "";
-        //    if (inicio > DateTime.Now) {
-        //        errores += "La fecha de inicio no puede ser superior a la actual";
-        //    }
-        //    if (fin > DateTime.Now)
-        //    {
-        //        errores += " La fecha de inicio no puede ser superior a la actual";
-        //    }
-        //    if (inicio > fin) 
-        //    { 
-        //        errores += " La fecha de inicio no puede ser mayor a la de fin"; 
-        //    }
-        //    if (inicio < DateTime.Parse("31-12-2015"))
-        //    {
-        //        errores += " La fecha de inicio de busqueda no puede ser menor al 31 de diciembre de 2015";
-        //    }
-        //    if (!string.IsNullOrEmpty(errores))
-        //    {
-        //        throw new Exception(errores);
-        //    }
-        //}
+        public Cliente GetCliente(int idCliente) {
+            Cliente cliente = null;
+            bool encontrado = false;
+            foreach(Cliente c in GetClientes())
+            {
+                if (c.Id == idCliente)
+                {
+                    cliente = c;
+                    encontrado = true;
+                } 
+            }
+            return (cliente);
+        }
+
+        public void AgregarSaldoAUser(int idUser, int monto)
+        {
+            Cliente cliente = GetCliente(idUser);
+            if (cliente == null) {
+                throw new Exception("Usuario no válido");
+            } else {
+                cliente.CargarSaldo(monto); 
+            }
+        }
+        public void RestarSaldoAUser(int idUser, int monto)
+        {
+            Cliente cliente = GetCliente(idUser);
+            if (cliente == null)
+            {
+                throw new Exception("Usuario no válido");
+            }
+            else
+            {
+                cliente.DescontarSaldo(monto);
+            }
+        }
+
     }
 }
