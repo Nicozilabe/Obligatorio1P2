@@ -14,7 +14,7 @@ namespace Entrega1.Clases.Publicacion
         private static int _ultimoId = 1;
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Estado { get; set; }
+        public TipoEstado Estado { get; set; }
         // Prob enumerado.
         public DateTime FechaPublicacion { get; set; }
         private List<Articulo> Articulos = new List<Articulo>();
@@ -31,7 +31,7 @@ namespace Entrega1.Clases.Publicacion
         public Publicacion(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, Cliente comprador, DateTime fechaDeFin) : this()
         {
             Nombre = nombre;
-            Estado = estado;
+            Estado = TipoEstado.Abierta;
             FechaPublicacion = fechaPublicacion;
             Realizador = realizador;
             Comprador = comprador;
@@ -41,7 +41,7 @@ namespace Entrega1.Clases.Publicacion
         public Publicacion(string nombre)
         {
             Nombre = nombre;
-            Estado = "ABIERTO";
+            Estado = TipoEstado.Abierta;
             FechaPublicacion = DateTime.Now;
             Realizador = null;
             Comprador = null;
