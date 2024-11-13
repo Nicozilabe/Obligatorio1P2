@@ -43,5 +43,10 @@ namespace Entrega1.Clases.Publicacion
                 throw new Exception("Estado de venta no valido.");
             }
         }
+
+        public override void CerrarPublicacion()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
