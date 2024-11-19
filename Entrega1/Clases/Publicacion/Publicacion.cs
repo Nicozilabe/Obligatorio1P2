@@ -80,13 +80,20 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("Nombre no valido");
             }
-
         }
         public void RestarSaldo(double monto)
         {
             Comprador.DescontarSaldo(monto);
         }
-        public abstract void CerrarPublicacion();
+        public abstract void PublicacionComprada(Cliente c);
 
+        public double CalcularPrecio() {
+            double ret = 0;
+            foreach (Articulo a in Articulos)
+            {
+                ret += a.Precio;
+            }
+            return ret;
+        }
     }
 }

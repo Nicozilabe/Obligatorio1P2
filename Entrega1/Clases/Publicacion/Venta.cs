@@ -44,9 +44,18 @@ namespace Entrega1.Clases.Publicacion
             }
         }
 
-        public override void CerrarPublicacion()
+        public override void PublicacionComprada(Cliente c)
         {
-            throw new NotImplementedException();
+            if (c.SaldoSuficiente(this.CalcularPrecio()))
+            {
+                Realizador = c;
+                Comprador = c;
+                c.DescontarSaldo(this.CalcularPrecio());
+                Estado = TipoEstado.Cerrada;
+            }
+            else{
+                throw new Exception("Saldo no valido");
+            }
         }
     }
 }

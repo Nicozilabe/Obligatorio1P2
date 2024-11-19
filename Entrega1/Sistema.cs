@@ -263,6 +263,7 @@ namespace Entrega1
         }
         public List<Publicacion> GetPublicaciones()
         {
+
             return _publicaciones;
         }
         
@@ -284,10 +285,9 @@ namespace Entrega1
         // Parte 4 del menu en Program.
         public List<Publicacion> GetPublicacionesPorFecha(DateTime inicio, DateTime fin)
         {
-         
-
+            List<Publicacion> publicaciones = GetPublicaciones();
             List<Publicacion> ret = new List<Publicacion>();
-            foreach (Publicacion p in _publicaciones)
+            foreach (Publicacion p in publicaciones)
             {
                 if (p.FechaPublicacion >= inicio && p.FechaPublicacion <= fin)
                 {
@@ -333,6 +333,18 @@ namespace Entrega1
             }
             return subastas;
         }
+        public List<Venta> GetVentas()
+        {
+            List<Venta> ventas = new List <Venta>();
+            foreach (Publicacion p in GetPublicaciones())
+            {
+                if(p is Venta v)
+                {
+                    ventas.Add(v);
+                }
+            }
+            return ventas;
+        }
         public Subasta GetSubastaById(int idSubasta)
         {
             Subasta res = null;
@@ -345,11 +357,38 @@ namespace Entrega1
             }
             return res;
         }
+        public Venta GetVentaById(int idVenta)
+        {
+            Venta res = null;
+            foreach (Venta v in GetVentas())
+            {
+                if (v.Id == idVenta)
+                {
+                    res = v;
+                }
+            }
+            return res;
+        }
         public void AgregarOferta(int idCliente, int idSubasta,double monto)
         {
             Subasta s = GetSubastaById(idSubasta);
-
         }
-
+        public void ComprarVenta(int idCliente, int idVenta)
+        {
+            Publicacion v = GetVentaById (idVenta);
+            Cliente c = GetCliente(idCliente);
+            if (v != null && c != null)
+            {
+                v.PublicacionComprada(c);
+            }
+            else if(c == null)
+            {
+                throw new Exception("Cliente no valido.");
+            }
+            else if(v == null) 
+            {
+                throw new Exception("Venta no permitida.");
+            }
+        }
     }
 }
