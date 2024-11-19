@@ -13,19 +13,16 @@ namespace Entrega1.Clases.Publicacion
         private List<Oferta> _ofertas = new List<Oferta>();
 
         public Subasta()
-        {
+        { }
 
-        }
         //contructor posta
         public Subasta(string nombre) : base(nombre)
-        {
+        { }
 
-        }
         //constructor precarga
-        public Subasta(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador,  Cliente comprador, DateTime fechaDeFin) : base(nombre, estado, fechaPublicacion, realizador, comprador, fechaDeFin)
-        {
+        public Subasta(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, Cliente comprador, DateTime fechaDeFin) : base(nombre, estado, fechaPublicacion, realizador, comprador, fechaDeFin)
+        { }
 
-        }
         public override string ToString()
         {
             return "Subasta: " + base.ToString() + $", Cantidad de ofertas{_ofertas.Count()}";
@@ -56,10 +53,31 @@ namespace Entrega1.Clases.Publicacion
             _ofertas.Add(o);
         }
 
-        public override void PublicacionComprada()
+        public override void CerrarPublicacion(Usuario u)
         {
-            //para hacer
-            var o = _ofertas.Last();
+            if (u is Administrador a)
+            {
+                bool encontrado = false;
+                for (int i = _ofertas.Count() - 1; i > 0 && !encontrado; i--)
+                {
+                    Oferta o = _ofertas[i];
+                    o.Verificar();
+                    // oferta.Verificar ya verifica que el cliente posea el saldo suficiente
+                    o.Usuario.DescontarSaldo(o.Monto);
+                    Realizador = a;
+                    Comprador = o.Usuario;
+                    Estado = TipoEstado.Cerrada;
+                    encontrado = true;
+                }
+                if (!encontrado)
+                {
+                    throw new Exception("No se encuentran ofertas validas.");
+                }
+            }
+            else
+            {
+                throw new Exception("La subasta debe ser cerrada por un adminstrador.");
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Entrega1.Clases.Usuarios
 
         public Cliente()
         {
-
+            Saldo = 0;
         }
         public Cliente(string nombre, string apellido, string email, string pass, double saldo) : base(nombre, apellido, email, pass)
         {

@@ -10,7 +10,7 @@ namespace Entrega1.Clases.Publicacion
 {
     public class Venta : Publicacion
     {
-        
+
         // Esto probablemente no sea String.
         public bool EsOfertaRelampago { get; set; }
         //constructor posta
@@ -34,17 +34,24 @@ namespace Entrega1.Clases.Publicacion
             return "Venta: " + base.ToString() + s;
         }
 
-        public override void PublicacionComprada(Cliente c)
+        public void CerrarPublicacion(Usuario u)
         {
-            if (c.SaldoSuficiente(this.CalcularPrecio()))
+            if (u is Cliente c)
             {
-                Realizador = c;
-                Comprador = c;
-                c.DescontarSaldo(this.CalcularPrecio());
-                Estado = TipoEstado.Cerrada;
-            }
-            else{
-                throw new Exception("Saldo no valido");
+
+                if (c.SaldoSuficiente(this.CalcularPrecio()))
+                {
+                    Realizador = c;
+                    Comprador = c;
+                    c.DescontarSaldo(this.CalcularPrecio());
+                    Estado = TipoEstado.Cerrada;
+                }
+                else
+                {
+                    throw new Exception("Saldo no valido");
+                }
+            }else {
+                throw new Exception("La compra debe ser realizada por clientes.");
             }
         }
     }

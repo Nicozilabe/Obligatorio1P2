@@ -18,7 +18,7 @@ namespace Entrega1.Clases.Publicacion
         // Prob enumerado.
         public DateTime FechaPublicacion { get; set; }
         private List<Articulo> Articulos = new List<Articulo>();
-        public Cliente? Realizador { get; set; }
+        public Usuario? Realizador { get; set; }
         
         public Cliente? Comprador { get; set; }
         public DateTime? FechaDeFin { get; set; }
@@ -85,7 +85,8 @@ namespace Entrega1.Clases.Publicacion
         {
             Comprador.DescontarSaldo(monto);
         }
-        public abstract void PublicacionComprada(Cliente c);
+
+        public abstract void CerrarPublicacion(Usuario u);
 
         public double CalcularPrecio() {
             double ret = 0;

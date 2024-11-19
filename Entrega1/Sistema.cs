@@ -257,6 +257,7 @@ namespace Entrega1
                 throw new Exception("Articulo ya existente");
             }
         }
+        
         public List<Articulo> GetArticulos()
         {
             return _articulos;
@@ -297,20 +298,17 @@ namespace Entrega1
             return ret;
         }
         public Cliente GetCliente(int idCliente) {
-            Cliente cliente = null;
-            bool encontrado = false;
+
             List<Cliente> clientes = GetClientes();
             foreach (Cliente c in clientes)
             {
                 if (c.Id == idCliente)
                 {
-                    cliente = c;
-                    encontrado = true;
-                    //acá no hay dios que los proteja
-                    break;
+                    return c;
+
                 } 
             }
-            return (cliente);
+            throw new Exception("Cliente no encontrado");
         }
 
         public void AgregarSaldoAUser(int idUser, int monto)
@@ -347,27 +345,26 @@ namespace Entrega1
         }
         public Subasta GetSubastaById(int idSubasta)
         {
-            Subasta res = null;
             foreach(Subasta s in GetSubastas())
             {
                 if (s.Id == idSubasta)
                 {
-                    res = s;
+                    return s;
                 }
             }
-            return res;
+            throw new Exception("Subasta no encontrada.");
         }
         public Venta GetVentaById(int idVenta)
         {
-            Venta res = null;
+            
             foreach (Venta v in GetVentas())
             {
                 if (v.Id == idVenta)
                 {
-                    res = v;
+                    return v;
                 }
             }
-            return res;
+            throw new Exception("Venta no encontrada.");
         }
         // 
         public void AgregarOfertaASubastas(int idCliente, int idSubasta,double monto)
@@ -384,22 +381,11 @@ namespace Entrega1
             }
         }
 
-        public void ComprarVenta(int idCliente, int idVenta)
+        public void CerrarPublicacion(int idCliente, int idVenta)
         {
-            Publicacion v = GetVentaById (idVenta);
-            Cliente c = GetCliente(idCliente);
-            if (v != null && c != null)
-            {
-                v.PublicacionComprada(c);
-            }
-            else if(c == null)
-            {
-                throw new Exception("Cliente no valido.");
-            }
-            else if(v == null) 
-            {
-                throw new Exception("Venta no permitida.");
-            }
+        //hacer cerrar publicación generico y obtener publicaciónes por id
         }
+
+
     }
 }
