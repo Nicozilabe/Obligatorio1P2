@@ -369,10 +369,21 @@ namespace Entrega1
             }
             return res;
         }
-        public void AgregarOferta(int idCliente, int idSubasta,double monto)
+        // 
+        public void AgregarOfertaASubastas(int idCliente, int idSubasta,double monto)
         {
             Subasta s = GetSubastaById(idSubasta);
+            Oferta o = new Oferta(monto, GetCliente (idCliente), DateTime.Now);
+            o.Verificar();
+            if (s != null)
+            {
+                s.AgregarOferta(o);
+            }else
+            {
+                throw new Exception("Oferta no valida");
+            }
         }
+
         public void ComprarVenta(int idCliente, int idVenta)
         {
             Publicacion v = GetVentaById (idVenta);
