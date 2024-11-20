@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -194,18 +195,6 @@ namespace Entrega1
             }
             return _instancia;
         }
-        public List<Cliente> GetClientes()
-        {
-            List<Cliente> clientes = new List<Cliente>();
-            foreach (Usuario u in _usuarios)
-            {
-                if (u is Cliente c)
-                {
-                    clientes.Add(c);
-                }
-            }
-            return clientes;
-        }
 
         // Altas.
         public void AltaVenta(Venta x)
@@ -248,7 +237,6 @@ namespace Entrega1
                 throw new Exception("El administrador ya existe");
             }
         }
-        
 
         public void ArticuloExistente(Articulo x)
         {
@@ -258,14 +246,52 @@ namespace Entrega1
             }
         }
         
+        public List<Cliente> GetClientes()
+        {
+            List<Cliente> clientes = new List<Cliente>();
+            foreach (Usuario u in _usuarios)
+            {
+                if (u is Cliente c)
+                {
+                    clientes.Add(c);
+                }
+            }
+            return clientes;
+        }
         public List<Articulo> GetArticulos()
         {
             return _articulos;
         }
         public List<Publicacion> GetPublicaciones()
         {
-
             return _publicaciones;
+        }
+        public List<Usuario> GetUsuarios()
+        {
+            return _usuarios;
+        }
+        public  List<Subasta> GetSubastas(){
+            List < Subasta > subastas = new List < Subasta >();
+            foreach (Publicacion p in GetPublicaciones())
+            {
+                if(p is Subasta s)
+                {
+                    subastas.Add(s);
+                }
+            }
+            return subastas;
+        }
+        public List<Venta> GetVentas()
+        {
+            List<Venta> ventas = new List <Venta>();
+            foreach (Publicacion p in GetPublicaciones())
+            {
+                if(p is Venta v)
+                {
+                    ventas.Add(v);
+                }
+            }
+            return ventas;
         }
         
         // Parte 2 del menu en Program.
@@ -320,29 +346,7 @@ namespace Entrega1
                 cliente.CargarSaldo(monto); 
             }
         }
-        public  List<Subasta> GetSubastas(){
-            List < Subasta > subastas = new List < Subasta >();
-            foreach (Publicacion p in GetPublicaciones())
-            {
-                if(p is Subasta s)
-                {
-                    subastas.Add(s);
-                }
-            }
-            return subastas;
-        }
-        public List<Venta> GetVentas()
-        {
-            List<Venta> ventas = new List <Venta>();
-            foreach (Publicacion p in GetPublicaciones())
-            {
-                if(p is Venta v)
-                {
-                    ventas.Add(v);
-                }
-            }
-            return ventas;
-        }
+        
         public Subasta GetSubastaById(int idSubasta)
         {
             foreach(Subasta s in GetSubastas())
@@ -356,7 +360,6 @@ namespace Entrega1
         }
         public Venta GetVentaById(int idVenta)
         {
-            
             foreach (Venta v in GetVentas())
             {
                 if (v.Id == idVenta)
@@ -366,6 +369,30 @@ namespace Entrega1
             }
             throw new Exception("Venta no encontrada.");
         }
+        public Publicacion GetPublicacionById(int idPublicacion)
+        {
+            foreach (Publicacion p in GetPublicaciones())
+            {
+                if(p.Id == idPublicacion)
+                {
+                    return p;
+                }
+                throw new Exception("Publicacion no encontrada.");
+            }
+        }
+        public Usuario GetUsuarioById(int idUsuario)
+        {
+            // List<Usuario> ret = new List<Usuario>();
+            foreach(Usuario u in GetUsuarios())
+            {
+                if (u.Id == idUsuario) 
+                { 
+                    return u;
+                }
+                throw new Exception("Usuario no encontrado");
+            }
+        }
+
         // 
         public void AgregarOfertaASubastas(int idCliente, int idSubasta,double monto)
         {
@@ -386,6 +413,16 @@ namespace Entrega1
         //hacer cerrar publicación generico y obtener publicaciónes por id
         }
 
-
+        public static Usuario Login(string Email, string Pass)
+        {
+            foreach (Usuario u in _usuarios)
+            {
+                if (u.Email.Equals(Email) && u.Pass.Equals(Pass))
+                {
+                    return u; // as Usuario;
+                }
+            }
+            throw new Exception("Datos de login no validos.");
+        }
     }
 }

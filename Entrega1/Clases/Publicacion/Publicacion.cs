@@ -15,7 +15,6 @@ namespace Entrega1.Clases.Publicacion
         public int Id { get; set; }
         public string Nombre { get; set; }
         public TipoEstado Estado { get; set; }
-        // Prob enumerado.
         public DateTime FechaPublicacion { get; set; }
         private List<Articulo> Articulos = new List<Articulo>();
         public Usuario? Realizador { get; set; }
@@ -27,6 +26,7 @@ namespace Entrega1.Clases.Publicacion
         {
             Id=_ultimoId++;
         }
+
         //Constructor para precarga
         public Publicacion(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, Cliente comprador, DateTime fechaDeFin) : this()
         {
@@ -46,8 +46,8 @@ namespace Entrega1.Clases.Publicacion
             Realizador = null;
             Comprador = null;
             FechaDeFin = null;
-
         }
+
         // Para saber que artículos tiene cada publicación.
         public List<Articulo> GetArticulos()
         {

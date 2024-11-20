@@ -10,9 +10,8 @@ namespace Entrega1.Clases.Publicacion
 {
     public class Venta : Publicacion
     {
-
-        // Esto probablemente no sea String.
         public bool EsOfertaRelampago { get; set; }
+
         //constructor posta
         public Venta(string nombre) : base(nombre)
         {
@@ -38,7 +37,6 @@ namespace Entrega1.Clases.Publicacion
         {
             if (u is Cliente c)
             {
-
                 if (c.SaldoSuficiente(this.CalcularPrecio()))
                 {
                     Realizador = c;
