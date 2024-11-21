@@ -33,7 +33,7 @@ namespace Entrega1.Clases.Publicacion
             return "Venta: " + base.ToString() + s;
         }
 
-        public void CerrarPublicacion(Usuario u)
+        public override void CerrarPublicacion(Usuario u)
         {
             if (u is Cliente c)
             {

@@ -346,10 +346,10 @@ namespace Entrega1
                 cliente.CargarSaldo(monto); 
             }
         }
-        
+
         public Subasta GetSubastaById(int idSubasta)
         {
-            foreach(Subasta s in GetSubastas())
+            foreach (Subasta s in GetSubastas())
             {
                 if (s.Id == idSubasta)
                 {
@@ -358,17 +358,17 @@ namespace Entrega1
             }
             throw new Exception("Subasta no encontrada.");
         }
-        public Venta GetVentaById(int idVenta)
-        {
-            foreach (Venta v in GetVentas())
-            {
-                if (v.Id == idVenta)
-                {
-                    return v;
-                }
-            }
-            throw new Exception("Venta no encontrada.");
-        }
+        //public Venta GetVentaById(int idVenta)
+        //{
+        //    foreach (Venta v in GetVentas())
+        //    {
+        //        if (v.Id == idVenta)
+        //        {
+        //            return v;
+        //        }
+        //    }
+        //    throw new Exception("Venta no encontrada.");
+        //}
         public Publicacion GetPublicacionById(int idPublicacion)
         {
             foreach (Publicacion p in GetPublicaciones())
@@ -377,8 +377,8 @@ namespace Entrega1
                 {
                     return p;
                 }
-                throw new Exception("Publicacion no encontrada.");
             }
+            throw new Exception("Publicacion no encontrada.");
         }
         public Usuario GetUsuarioById(int idUsuario)
         {
@@ -389,8 +389,8 @@ namespace Entrega1
                 { 
                     return u;
                 }
-                throw new Exception("Usuario no encontrado");
             }
+            throw new Exception("Usuario no encontrado");
         }
 
         // 
@@ -408,18 +408,19 @@ namespace Entrega1
             }
         }
 
-        public void CerrarPublicacion(int idCliente, int idVenta)
+        public void CerrarPublicacion(int idUsuario, int idPublicacion)
         {
-        //hacer cerrar publicación generico y obtener publicaciónes por id
+            Publicacion p = GetPublicacionById(idPublicacion);
+            p.CerrarPublicacion(GetUsuarioById(idUsuario));
         }
 
-        public static Usuario Login(string Email, string Pass)
+        public Usuario Login(string Email, string Pass)
         {
             foreach (Usuario u in _usuarios)
             {
                 if (u.Email.Equals(Email) && u.Pass.Equals(Pass))
                 {
-                    return u; // as Usuario;
+                    return u; 
                 }
             }
             throw new Exception("Datos de login no validos.");
