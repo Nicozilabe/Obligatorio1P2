@@ -323,7 +323,7 @@ namespace Entrega1
             }
             return ret;
         }
-        public Cliente GetCliente(int idCliente) {
+        public Cliente GetCliente(int? idCliente) {
 
             List<Cliente> clientes = GetClientes();
             foreach (Cliente c in clientes)
@@ -337,7 +337,7 @@ namespace Entrega1
             throw new Exception("Cliente no encontrado");
         }
 
-        public void AgregarSaldoAUser(int idUser, int monto)
+        public void AgregarSaldoAUser(int? idUser, double monto)
         {
             Cliente cliente = GetCliente(idUser);
             if (cliente == null) {

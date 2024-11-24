@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@{
+    int? lid = Context.Session.GetInt32("logueadoId");
+    string lrol = Context.Session.GetString("logueadoRol");
+    int? lsaldo = Context.Session.GetInt32("logueadoSaldo");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,16 +24,31 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                    @if(lid == null)
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Aut" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="aut" asp-action="Registro">Registrarse</a>
+                            </li>
+                        </ul>
+                    }else if (lrol == "Cliente")
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="AgregarSaldo">Agregar Saldo</a>
+                            </li>
+
+                        </ul>
+                    }
                 </div>
             </div>
+            @if (lrol == "Cliente")
+            {
+                <div class="align-self-end"> <p>Saldo disponible:@lsaldo</p></div>
+            }
         </nav>
     </header>
     <div class="container">

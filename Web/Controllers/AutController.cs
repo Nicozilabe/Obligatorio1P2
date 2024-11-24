@@ -32,6 +32,10 @@ namespace Web.Controllers
                     HttpContext.Session.SetInt32("logueadoId", usu.Id);
                     HttpContext.Session.SetString("logueadoRol", usu.GetType().Name);
                     HttpContext.Session.SetString("logueadoNombre", usu.Nombre);
+                    if (usu is Cliente c)
+                    {
+                        HttpContext.Session.SetInt32("logueadoSaldo", (int)c.Saldo);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 catch (Exception e)
@@ -62,7 +66,7 @@ namespace Web.Controllers
             {
                 cli.Verificar();
                 s.AltaCliente(cli);
-                RedirectToAction("Login");
+               return RedirectToAction("Login");
             }
             catch (Exception e)
             {
