@@ -1,0 +1,40 @@
+﻿@using Entrega1.Clases.Publicacion;
+
+@model List<Publicacion>;
+
+<div class="container mt-1">
+    <div class="row gap-3 row-cols-2 justify-content-center">
+        @foreach (Publicacion p in Model)
+        {
+            if (p is Venta v)
+            {
+                <div class="col-4 btn btn-primary">
+                    <h2> Venta @v.Nombre</h2>
+                    <p>Articulos</p>
+                    @foreach (var a in v.GetArticulos())
+                    {
+                        <p>@a.Nombre</p>
+                    }
+                    <p>@v.CalcularPrecio()</p>
+                    @Html.ActionLink("Ver/Comprar", "Venta", new { id = v.Id }, new { @class = "btn btn-secondary" })
+                </div>
+            }
+            else if (p is Subasta s)
+            {
+                <div class="col-4 align-items-center" style="background: grey; border-radius: 5px;">
+                    <h2>Subasta @s.Nombre</h2>
+                    <p>Articulos</p>
+                    @foreach (var a in s.GetArticulos())
+                    {
+                        <p>@a.Nombre</p>
+                    }
+
+                    @Html.ActionLink("Ver/Ofertar", "Venta", new { id = s.Id }, new { @class = "btn btn-secondary" })
+                </div>
+            }
+        }
+
+
+
+    </div>
+</div>

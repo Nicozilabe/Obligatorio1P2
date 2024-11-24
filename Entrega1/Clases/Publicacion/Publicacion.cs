@@ -16,7 +16,7 @@ namespace Entrega1.Clases.Publicacion
         public string Nombre { get; set; }
         public TipoEstado Estado { get; set; }
         public DateTime FechaPublicacion { get; set; }
-        private List<Articulo> Articulos = new List<Articulo>();
+        public List<Articulo> Articulos = new List<Articulo>();
         public Usuario? Realizador { get; set; }
         
         public Cliente? Comprador { get; set; }
@@ -81,20 +81,13 @@ namespace Entrega1.Clases.Publicacion
                 throw new Exception("Nombre no valido");
             }
         }
-        public void RestarSaldo(double monto)
+        private void RestarSaldo(double monto)
         {
             Comprador.DescontarSaldo(monto);
         }
 
         public abstract void CerrarPublicacion(Usuario u);
 
-        public double CalcularPrecio() {
-            double ret = 0;
-            foreach (Articulo a in Articulos)
-            {
-                ret += a.Precio;
-            }
-            return ret;
-        }
+
     }
 }

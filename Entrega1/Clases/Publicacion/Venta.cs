@@ -52,5 +52,14 @@ namespace Entrega1.Clases.Publicacion
                 throw new Exception("La compra debe ser realizada por clientes.");
             }
         }
+        public double CalcularPrecio()
+        {
+            double ret = 0;
+            foreach (Articulo a in Articulos)
+            {
+                ret += a.Precio;
+            }
+            return ret;
+        }
     }
 }
