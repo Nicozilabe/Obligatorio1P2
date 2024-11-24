@@ -40,10 +40,19 @@ namespace Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    
+                    //ViewBag.msg = e.Message;
                 }
-                
-            }return View();
+            }
+            return View();
+        }
+        public IActionResult Logout() 
+        { 
+            if(HttpContext.Session.GetInt32("logueadoId") == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -15,6 +15,13 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
+            int? logId = HttpContext.Session.GetInt32("logueadoId");
+            if (logId != null) 
+            {
+                //Depende de que usuario sea.
+                //string logNom = HttpContext.Session.GetString("logueadoNombre");
+                //ViewBag.msgBienvenida = $"Bienvenido compa {logNom}";
+            }
             return View();
         }
 
