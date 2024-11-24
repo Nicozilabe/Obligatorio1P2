@@ -423,7 +423,7 @@ namespace Entrega1
                     return u; 
                 }
             }
-            throw new Exception("Datos de login no validos.");
+            throw new Exception("Email o contraseña no validos.");
         }
     }
 }

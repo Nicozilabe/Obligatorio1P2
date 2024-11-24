@@ -19,8 +19,8 @@ namespace Web.Controllers
             if (logId != null) 
             {
                 //Depende de que usuario sea.
-                //string logNom = HttpContext.Session.GetString("logueadoNombre");
-                //ViewBag.msgBienvenida = $"Bienvenido compa {logNom}";
+                string logNom = HttpContext.Session.GetString("logueadoNombre");
+                ViewBag.msgNombreUsuario = logNom;
             }
             return View();
         }

@@ -8,15 +8,16 @@
         <form method="post">
             <div class="form-group">
                 <label  class="control-label">Email</label>
-                <input asp-for="Email" class="form-control" required/>
+                <input name="Email" type="email" class="form-control" required/>
             </div>
             <div class="form-group">
                 <label class="control-label">Contraseña</label>
-                <input asp-for="Pass" class="form-control" required/>
+                <input name="Pass" type="password" class="form-control" required/>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary mt-2" />
             </div>
         </form>
     </div>
 </div>
+<p>@ViewBag.msg</p>

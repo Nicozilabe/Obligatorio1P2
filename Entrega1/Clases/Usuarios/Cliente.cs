@@ -27,7 +27,7 @@ namespace Entrega1.Clases.Usuarios
         public override void Verificar()
         {
             base.Verificar();
-            if (double.IsNaN(Saldo) || Saldo < 1)
+            if (double.IsNaN(Saldo) || Saldo < 0)
             {
                 throw new Exception("Saldo no valido");
             }

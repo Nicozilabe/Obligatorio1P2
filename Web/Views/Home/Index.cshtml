@@ -2,7 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if(ViewBag.msgNombreUsuario != null){
+    <div class="text-center">
+        <h2 class="display-4">Bienvenido @ViewBag.msgNombreUsuario</h2>
+    </div>
+
+} else{
+    <div class="text-center">
+        <h2 class="display-4">Bienvenido, recomendamos @Html.ActionLink("Iniciar Sesion", "Login", "Aut") o @Html.ActionLink("Registrarse", "Registro", "Aut")</h2>
+    </div>
+
+}

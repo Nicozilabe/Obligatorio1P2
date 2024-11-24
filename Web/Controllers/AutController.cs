@@ -10,10 +10,6 @@ namespace Web.Controllers
     public class AutController : Controller
     {
         Sistema s = Sistema.GetInstancia();
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         [HttpGet]
         public IActionResult Login()
@@ -26,7 +22,7 @@ namespace Web.Controllers
         {
             if (lm == null || string.IsNullOrEmpty(lm.Email) || string.IsNullOrEmpty(lm.Pass))
             {
-
+                ViewBag.msg = "Los datos ingresados deben ser validos.";
             }
             else
             {
@@ -38,21 +34,41 @@ namespace Web.Controllers
                     HttpContext.Session.SetString("logueadoNombre", usu.Nombre);
                     return RedirectToAction("Index", "Home");
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    //ViewBag.msg = e.Message;
+                    ViewBag.msg = e.Message;
                 }
             }
             return View();
         }
-        public IActionResult Logout() 
-        { 
-            if(HttpContext.Session.GetInt32("logueadoId") == null)
+        public IActionResult Logout()
+        {
+            if (HttpContext.Session.GetInt32("logueadoId") == null)
             {
                 return RedirectToAction("Index", "Home");
             }
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public IActionResult Registro()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Registro(Cliente cli)
+        {
+            try
+            {
+                cli.Verificar();
+                s.AltaCliente(cli);
+                RedirectToAction("Login");
+            }
+            catch (Exception e)
+            {
+                ViewBag.msg = e.Message;
+            }
+            return View();
         }
     }
 }
