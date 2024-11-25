@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Entrega1\Entrega1.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Administrador\" />
+  </ItemGroup>
+
 </Project>

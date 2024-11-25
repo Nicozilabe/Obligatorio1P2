@@ -43,6 +43,7 @@ namespace Entrega1.Clases.Publicacion
                     Comprador = c;
                     c.DescontarSaldo(this.CalcularPrecio());
                     Estado = TipoEstado.Cerrada;
+                    FechaDeFin = DateTime.Now;
                 }
                 else
                 {
