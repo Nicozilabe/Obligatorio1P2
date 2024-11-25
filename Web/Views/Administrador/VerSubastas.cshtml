@@ -1,0 +1,32 @@
+﻿@using Entrega1.Clases.Publicacion;
+
+@model List<Publicacion>;
+@* Tengo que cambiar lo de arriba, no me doy cuenta si usar sistema, la lista de subastas *@
+
+<div class="container mt-1">
+    <h1>Lista de Subastas</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row g-3">
+                @foreach (Publicacion p in Model.OrderBy(sub => sub.FechaPublicacion))
+                {
+                    if (p is Subasta s)
+                    {
+                        <div class="col-6" style="background: grey; border-radius: 5px; padding: 15px;">
+							<h2><strong>@s.Nombre</strong></h2>
+                            <p><strong>Fecha de Publicacion:</strong> @s.FechaPublicacion.ToString("dd/MM/yyyy")</p>
+                            <p><strong>Estado:</strong>   @*no me estoy dando cuenta de como mostrar el estado*@    </p>
+                            <p><strong>Mejor Oferta:</strong> @*(s.MejorOferta?.Monto ?? "Sin ofertas")  HAY QUE CREAR UN METODO PARA LAS MEJORES OFERTAS.*@</p>
+                            <p>Articulos:</p>
+                            @foreach (var a in s.GetArticulos())
+                            {
+                                <p>@a.Nombre</p>
+                            }
+                            @* @Html.ActionLink("Ver/Ofertar", "Venta", new { id = s.Id }, new { @class = "btn btn-secondary" }) *@
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
