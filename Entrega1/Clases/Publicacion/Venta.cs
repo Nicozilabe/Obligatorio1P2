@@ -35,7 +35,7 @@ namespace Entrega1.Clases.Publicacion
 
         public override void CerrarPublicacion(Usuario u)
         {
-            if (u is Cliente c)
+            if (u is Cliente c && Estado == TipoEstado.Abierta)
             {
                 if (c.SaldoSuficiente(this.CalcularPrecio()))
                 {
@@ -48,7 +48,11 @@ namespace Entrega1.Clases.Publicacion
                 {
                     throw new Exception("Saldo no valido");
                 }
-            }else {
+            }
+            else if (Estado != TipoEstado.Abierta)
+            {
+                throw new Exception("Publicación ya cerrada");
+            }else{
                 throw new Exception("La compra debe ser realizada por clientes.");
             }
         }

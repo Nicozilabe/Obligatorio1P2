@@ -266,6 +266,18 @@ namespace Entrega1
         {
             return _publicaciones;
         }
+        public List<Publicacion> GetPublicacionesActivas()
+        {
+            List <Publicacion> ret = new List<Publicacion>();
+            foreach(Publicacion p in _publicaciones)
+            {
+                if (p.Estado == TipoEstado.Abierta)
+                {
+                    ret.Add(p);
+                }
+            }
+            return ret;
+        }
         public List<Usuario> GetUsuarios()
         {
             return _usuarios;
@@ -358,17 +370,17 @@ namespace Entrega1
             }
             throw new Exception("Subasta no encontrada.");
         }
-        //public Venta GetVentaById(int idVenta)
-        //{
-        //    foreach (Venta v in GetVentas())
-        //    {
-        //        if (v.Id == idVenta)
-        //        {
-        //            return v;
-        //        }
-        //    }
-        //    throw new Exception("Venta no encontrada.");
-        //}
+        public Venta GetVentaById(int idVenta)
+        {
+            foreach (Venta v in GetVentas())
+            {
+                if (v.Id == idVenta)
+                {
+                    return v;
+                }
+            }
+            throw new Exception("Venta no encontrada.");
+        }
         public Publicacion GetPublicacionById(int idPublicacion)
         {
             foreach (Publicacion p in GetPublicaciones())

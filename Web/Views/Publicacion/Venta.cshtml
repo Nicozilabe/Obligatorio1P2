@@ -1,0 +1,35 @@
+﻿@using Entrega1.Clases
+@model Entrega1.Clases.Publicacion.Venta;
+<h1>Formulario de Alta</h1>
+<h4>Subtítulo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <h2>@Model.Nombre</h2>
+            </div>
+            <div class="form-group">
+                <h2>@Model.CalcularPrecio()</h2>
+            </div>
+            <div class="form-group">
+                <h2>@Model.Estado</h2>
+            </div>
+            @foreach(var a in Model.Articulos)
+            {
+                <div class="form-group">
+                    <p>@a.Nombre</p>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Comprar" class="btn btn-primary" />
+            </div>
+            <input type="hidden" name="idVenta" value="@Model.Id" />
+            <input type="hidden" name="idCliente" value="@ViewBag.idCliente" />
+        </form>
+    </div>
+</div>
+<p>@ViewBag.msg</p>
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
