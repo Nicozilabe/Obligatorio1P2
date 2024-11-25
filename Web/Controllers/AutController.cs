@@ -20,12 +20,14 @@ namespace Web.Controllers
         [HttpPost]
         public IActionResult Login(LoginModel lm)
         {
+            // Si los datos son invalidos o el Email/Pass estan vacios, mandara un mensaje de alerta.
             if (lm == null || string.IsNullOrEmpty(lm.Email) || string.IsNullOrEmpty(lm.Pass))
             {
                 ViewBag.msg = "Los datos ingresados deben ser validos.";
             }
             else
             {
+                // Sino, tomara los datos, los lanza al metodo de comparacion en el sistema, y los guardara para saber que persona exactamente esta conectada en ese momento. Si el usuario ingresado es un Cliente, lo relaciona como tal y envia al usuario a una vista perteneciente a su rol especifico (redireccion). Ademas, si Usu es cliente, guarda el saldo del cliente en la sesion.
                 try
                 {
                     Usuario usu = s.Login(lm.Email, lm.Pass);
