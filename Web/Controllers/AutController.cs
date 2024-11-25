@@ -49,11 +49,13 @@ namespace Web.Controllers
         }
         public IActionResult Logout()
         {
+            //Podria quitar todo el IF y dejar el Clear.
             if (HttpContext.Session.GetInt32("logueadoId") == null)
             {
                 return RedirectToAction("Index", "Home");
             }
             HttpContext.Session.Clear();
+            //TempData["Message"] = "Sesion cerrada correctamente.";
             return RedirectToAction("Index", "Home");
         }
         [HttpGet]
@@ -68,7 +70,7 @@ namespace Web.Controllers
             {
                 cli.Verificar();
                 s.AltaCliente(cli);
-               return RedirectToAction("Login");
+                return RedirectToAction("Login");
             }
             catch (Exception e)
             {

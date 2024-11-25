@@ -24,6 +24,7 @@ namespace Web.Controllers
             }
             else
             {
+                //Pasa al metodo en Sistema la id del usuario actual a traves del LogueadoId y el monto agregado. Actualiza el saldo en la sesion LogueadoSaldo con el actual (c.Saldo)
                 try
                 {
                     s.AgregarSaldoAUser(HttpContext.Session.GetInt32("logueadoId"), monto);

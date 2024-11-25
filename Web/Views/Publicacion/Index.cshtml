@@ -6,6 +6,7 @@
     <div class="row gap-3 row-cols-2 justify-content-center">
         @foreach (Publicacion p in Model)
         {
+            //Muestra de multiples ventas, como catalogo.
             if (p is Venta v)
             {
                 <div class="col-4 btn btn-primary">
@@ -28,13 +29,9 @@
                     {
                         <p>@a.Nombre</p>
                     }
-
                     @Html.ActionLink("Ver/Ofertar", "Venta", new { id = s.Id }, new { @class = "btn btn-secondary" })
                 </div>
             }
         }
-
-
-
     </div>
 </div>
