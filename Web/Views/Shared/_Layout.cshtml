@@ -31,8 +31,9 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Aut" asp-action="Login">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="aut" asp-action="Registro">Registrarse</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Aut" asp-action="Registro">Registrarse</a>
                             </li>
+                            @*Tendria que existir un Li de Punlicacion para que una persona anonima pueda ver unicamente lo que hay en venta/subasta pero no podra comprar nada.*@
                         </ul>
                     }
                     else if (lrol == "Cliente")
@@ -45,7 +46,7 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Publicacion" asp-action="Index">Publicaciones</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Cerrar Sesion</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Aut" asp-action="Logout">Cerrar Sesion</a>
                             </li>
                         </ul>
                     }
@@ -56,11 +57,10 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Aministrador" asp-action="VerTodasLasSubastas">Ver Subastas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Cerrar Sesion</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Aut" asp-action="Logout">Cerrar Sesion</a>
                             </li>
                         </ul>
                     } *@
-
                 </div>
             </div>
             @if (lrol == "Cliente")
