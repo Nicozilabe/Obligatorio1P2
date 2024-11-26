@@ -54,7 +54,8 @@ namespace Web.Controllers
                     {
                         ViewBag.msg = ex.Message;
                     }
-                }else
+                }
+                else
                 {
                     ViewBag.msg = "Venta ya cerrada";
                 }
@@ -89,14 +90,7 @@ namespace Web.Controllers
                 {
                     ViewBag.msg = "Monto no válido";
                 }
-                else if (sub._ofertas.Count() != 0)
-                {
-                    if (monto < sub._ofertas.Last().Monto)
-                    {
-                        ViewBag.msg = "El monto debe ser mayor a la anterior oferta";
-                    }
-                }
-                else if(sub.Estado == TipoEstado.Abierta)
+                else if (sub.Estado == TipoEstado.Abierta)
                 {
                     try
                     {
@@ -105,7 +99,7 @@ namespace Web.Controllers
                     }
                     catch (Exception ex)
                     {
-                        { ViewBag.msg = ex.Message; }
+                       ViewBag.msg = ex.Message; 
 
                     }
 
@@ -114,6 +108,7 @@ namespace Web.Controllers
                 {
                     ViewBag.msg = "Subasta ya cerrada.";
                 }
+
                 return View(s.GetSubastaById(id));
             }
             else
