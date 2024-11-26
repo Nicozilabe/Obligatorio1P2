@@ -11,67 +11,107 @@ namespace Web.Controllers
         Sistema s = Sistema.GetInstancia();
         public IActionResult Index()
         {
-            return View(s.GetPublicaciones());
+            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            {
+                return View(s.GetPublicaciones());
+            }
+            else
+            {
+                return RedirectToAction("NotAllowed", "Aut");
+            }
         }
         [HttpGet]
         public IActionResult Venta(int id)
         {
-            ViewBag.idCliente = HttpContext.Session.GetInt32("logueadoId");
-            return View(s.GetVentaById(id));
+            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            {
+                ViewBag.idCliente = HttpContext.Session.GetInt32("logueadoId");
+                return View(s.GetVentaById(id));
+            }
+            else
+            {
+                return RedirectToAction("NotAllowed", "Aut");
+            }
+
         }
         [HttpPost]
         public IActionResult Venta(int idVenta, int idCliente)
         {
-            ViewBag.idCliente = HttpContext.Session.GetInt32("logueadoId");
-            //El metodo se encarga de registrar la compra, actualizar el estado de la publicacion y descontar el saldo del cliente. Luego se actualiza el saldo del cliente en la sesion LogueadoSoldo
-            try
+            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
             {
-                s.CerrarPublicacion(idCliente, idVenta);
-                Cliente c = s.GetCliente(HttpContext.Session.GetInt32("logueadoId"));
-                HttpContext.Session.SetInt32("logueadoSaldo", (int)c.Saldo);
-                ViewBag.msg = "Compra realizada efectivamente";
+                ViewBag.idCliente = HttpContext.Session.GetInt32("logueadoId");
+                //El metodo se encarga de registrar la compra, actualizar el estado de la publicacion y descontar el saldo del cliente. Luego se actualiza el saldo del cliente en la sesion LogueadoSoldo
+                try
+                {
+                    s.CerrarPublicacion(idCliente, idVenta);
+                    Cliente c = s.GetCliente(HttpContext.Session.GetInt32("logueadoId"));
+                    HttpContext.Session.SetInt32("logueadoSaldo", (int)c.Saldo);
+                    ViewBag.msg = "Compra realizada efectivamente";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.msg = ex.Message;
+                }
+                return View(s.GetVentaById(idVenta));
             }
-            catch (Exception ex)
+            else
             {
-                ViewBag.msg = ex.Message;
+                return RedirectToAction("NotAllowed", "Aut");
             }
-            return View(s.GetVentaById(idVenta));
+
         }
         [HttpGet]
         public IActionResult Subasta(int id)
         {
-            return View(s.GetSubastaById(id));
+            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            {
+                return View(s.GetSubastaById(id));
+            }
+            else
+            {
+                return RedirectToAction("NotAllowed", "Aut");
+            }
+
         }
         [HttpPost]
         public IActionResult Subasta(int id, double monto)
         {
-            Subasta sub = s.GetSubastaById(id);
-            if (double.IsNaN(monto) || monto < 0)
+            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
             {
-                ViewBag.msg = "Monto no válido";
-            }
-            else if (sub._ofertas.Count() != 0)
-            {
-                if (monto < sub._ofertas.Last().Monto)
+                Subasta sub = s.GetSubastaById(id);
+                if (double.IsNaN(monto) || monto < 0)
                 {
-                    ViewBag.msg = "El monto debe ser mayor a la anterior oferta";
+                    ViewBag.msg = "Monto no válido";
                 }
+                else if (sub._ofertas.Count() != 0)
+                {
+                    if (monto < sub._ofertas.Last().Monto)
+                    {
+                        ViewBag.msg = "El monto debe ser mayor a la anterior oferta";
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        s.AgregarOfertaASubastas(HttpContext.Session.GetInt32("logueadoId"), id, monto);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        { ViewBag.msg = ex.Message; }
+
+                    }
+
+                }
+                return View(s.GetSubastaById(id));
             }
             else
             {
-                try
-                {
-                    s.AgregarOfertaASubastas(HttpContext.Session.GetInt32("logueadoId"), id, monto);
-
-                }
-                catch (Exception ex)
-                {
-                    { ViewBag.msg = ex.Message; }
-
-                }
-
+                return RedirectToAction("NotAllowed", "Aut");
             }
-            return View(s.GetSubastaById(id));
+
+
         }
     }
 }
