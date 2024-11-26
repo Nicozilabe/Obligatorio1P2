@@ -15,6 +15,7 @@
                     {
                         <p>@a.Nombre</p>
                     }
+                    <p>@s.FechaPublicacion</p>
                     @if (s.Estado == TipoEstado.Abierta)
                     {
                         @Html.ActionLink("Ver", "CerrarSubasta", new { id = s.Id }, new { @class = "btn btn-secondary" })

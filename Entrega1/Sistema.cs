@@ -282,6 +282,8 @@ namespace Entrega1
         {
             return _usuarios;
         }
+
+    //las entrega ordenadas por fecha
         public List<Subasta> GetSubastas()
         {
             List<Subasta> subastas = new List<Subasta>();
@@ -292,6 +294,7 @@ namespace Entrega1
                     subastas.Add(s);
                 }
             }
+            subastas.Sort();
             return subastas;
         }
         public List<Venta> GetVentas()

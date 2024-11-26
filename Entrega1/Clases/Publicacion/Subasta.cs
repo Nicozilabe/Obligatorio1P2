@@ -8,7 +8,7 @@ using Entrega1.Interfaz;
 
 namespace Entrega1.Clases.Publicacion
 {
-    public class Subasta : Publicacion
+    public class Subasta : Publicacion , IComparable<Subasta>
     {
         public List<Oferta> _ofertas = new List<Oferta>();
 
@@ -84,6 +84,11 @@ namespace Entrega1.Clases.Publicacion
             {
                 throw new Exception("La subasta debe ser cerrada por un adminstrador.");
             }
+        }
+
+        public int CompareTo(Subasta? other)
+        {
+            return (FechaPublicacion.CompareTo(other.FechaPublicacion));
         }
     }
 }
