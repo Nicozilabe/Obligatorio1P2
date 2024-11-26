@@ -21,7 +21,12 @@
                 </div>
             }
             <div class="form-group">
-                <input type="submit" value="Comprar" class="btn btn-primary" />
+                @if(Model.Estado == Entrega1.Clases.Publicacion.TipoEstado.Abierta)
+                {
+                    <input type="submit" value="Comprar" class="btn btn-primary" />
+                }else{
+                    <input type="submit" value="Cerrada" disabled class="btn btn-primary" />
+                }
             </div>
             <input type="hidden" name="idVenta" value="@Model.Id" />
             <input type="hidden" name="idCliente" value="@ViewBag.idCliente" />

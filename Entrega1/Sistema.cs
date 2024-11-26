@@ -104,14 +104,14 @@ namespace Entrega1
 
             // Subasta 3 - Con ofertas
             Subasta subas1 = new Subasta("Laptop HP", "ABIERTA", DateTime.Now.AddDays(-12), null, null, DateTime.Now.AddDays(18));
-            subas1.AgregarOferta(new Oferta(26000, _usuarios[1] as Cliente, DateTime.Now.AddDays(-10)));
-            subas1.AgregarOferta(new Oferta(27000, _usuarios[2] as Cliente, DateTime.Now.AddDays(-8)));
+            subas1.AgregarOferta(new Oferta(5000, _usuarios[1] as Cliente, DateTime.Now.AddDays(-10)));
+            subas1.AgregarOferta(new Oferta(6000, _usuarios[2] as Cliente, DateTime.Now.AddDays(-8)));
             AltaSubasta(subas1);
 
             // Subasta 4 - Con ofertas
             Subasta subas2 = new Subasta("Consola PlayStation", "ABIERTA", DateTime.Now.AddDays(-18), null, null, DateTime.Now.AddDays(22));
-            subas2.AgregarOferta(new Oferta(56000, _usuarios[4] as Cliente, DateTime.Now.AddDays(-16)));
-            subas2.AgregarOferta(new Oferta(57000, _usuarios[6] as Cliente, DateTime.Now.AddDays(-14)));
+            subas2.AgregarOferta(new Oferta(400, _usuarios[4] as Cliente, DateTime.Now.AddDays(-16)));
+            subas2.AgregarOferta(new Oferta(1000, _usuarios[6] as Cliente, DateTime.Now.AddDays(-14)));
             AltaSubasta(subas2);
 
 
@@ -406,7 +406,7 @@ namespace Entrega1
         }
 
         // 
-        public void AgregarOfertaASubastas(int idCliente, int idSubasta,double monto)
+        public void AgregarOfertaASubastas(int? idCliente, int idSubasta,double monto)
         {
             Subasta s = GetSubastaById(idSubasta);
             Oferta o = new Oferta(monto, GetCliente (idCliente), DateTime.Now);

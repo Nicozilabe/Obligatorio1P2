@@ -17,19 +17,31 @@
                         <p>@a.Nombre</p>
                     }
                     <p>@v.CalcularPrecio()</p>
-                    @Html.ActionLink("Ver/Comprar", "Venta", new { id = v.Id }, new { @class = "btn btn-secondary" })
+                    @if (v.Estado == TipoEstado.Abierta)
+                    {
+                        @Html.ActionLink("Ver/Comprar", "Venta", new { id = v.Id }, new { @class = "btn btn-secondary" })
+                    }else{
+                        <input type="button" class="btn btn-secondary" value="Cerrada" disabled />
+                    }
                 </div>
             }
             else if (p is Subasta s)
             {
-                <div class="col-4 align-items-center" style="background: grey; border-radius: 5px;">
+                <div class="col-4 btn btn-primary">
                     <h2>Subasta @s.Nombre</h2>
                     <p>Articulos</p>
                     @foreach (var a in s.GetArticulos())
                     {
                         <p>@a.Nombre</p>
                     }
-                    @Html.ActionLink("Ver/Ofertar", "Venta", new { id = s.Id }, new { @class = "btn btn-secondary" })
+                    @if (s.Estado == TipoEstado.Abierta)
+                    {
+                        @Html.ActionLink("Ver/Ofertar", "Subasta", new { id = s.Id }, new { @class = "btn btn-secondary" })
+                    }
+                    else
+                    {
+                        <input type="button" class="btn btn-secondary" value="Cerrada" disabled />
+                    }
                 </div>
             }
         }

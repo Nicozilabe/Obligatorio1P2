@@ -10,7 +10,7 @@ namespace Entrega1.Clases.Publicacion
 {
     public class Subasta : Publicacion
     {
-        private List<Oferta> _ofertas = new List<Oferta>();
+        public List<Oferta> _ofertas = new List<Oferta>();
 
         public Subasta()
         { }

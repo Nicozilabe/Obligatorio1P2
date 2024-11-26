@@ -1,4 +1,5 @@
 ﻿using Entrega1;
+using Entrega1.Clases.Publicacion;
 using Entrega1.Clases.Usuarios;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,11 @@ namespace Web.Controllers
         Sistema s = Sistema.GetInstancia();
         public IActionResult Index()
         {
-            return View(s.GetPublicacionesActivas());
+            return View(s.GetPublicaciones());
         }
         [HttpGet]
-        public IActionResult Venta(int id) {
+        public IActionResult Venta(int id)
+        {
             ViewBag.idCliente = HttpContext.Session.GetInt32("logueadoId");
             return View(s.GetVentaById(id));
         }
@@ -29,10 +31,47 @@ namespace Web.Controllers
                 HttpContext.Session.SetInt32("logueadoSaldo", (int)c.Saldo);
                 ViewBag.msg = "Compra realizada efectivamente";
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 ViewBag.msg = ex.Message;
             }
             return View(s.GetVentaById(idVenta));
+        }
+        [HttpGet]
+        public IActionResult Subasta(int id)
+        {
+            return View(s.GetSubastaById(id));
+        }
+        [HttpPost]
+        public IActionResult Subasta(int id, double monto)
+        {
+            Subasta sub = s.GetSubastaById(id);
+            if (double.IsNaN(monto) || monto < 0)
+            {
+                ViewBag.msg = "Monto no válido";
+            }
+            else if (sub._ofertas.Count() != 0)
+            {
+                if (monto < sub._ofertas.Last().Monto)
+                {
+                    ViewBag.msg = "El monto debe ser mayor a la anterior oferta";
+                }
+            }
+            else
+            {
+                try
+                {
+                    s.AgregarOfertaASubastas(HttpContext.Session.GetInt32("logueadoId"), id, monto);
+
+                }
+                catch (Exception ex)
+                {
+                    { ViewBag.msg = ex.Message; }
+
+                }
+
+            }
+            return View(s.GetSubastaById(id));
         }
     }
 }
