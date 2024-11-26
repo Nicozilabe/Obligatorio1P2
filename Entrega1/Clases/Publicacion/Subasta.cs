@@ -48,9 +48,16 @@ namespace Entrega1.Clases.Publicacion
 
         public void AgregarOferta(Oferta o)
         {
-            o.Verificar();
-            OfertaValida(o);
-            _ofertas.Add(o);
+            if (Estado == TipoEstado.Abierta)
+            {
+                o.Verificar();
+                OfertaValida(o);
+                _ofertas.Add(o);
+            }
+            else
+            {
+                throw new Exception("Subasta ya cerrada");
+            }
         }
 
         public override void CerrarPublicacion(Usuario u)
