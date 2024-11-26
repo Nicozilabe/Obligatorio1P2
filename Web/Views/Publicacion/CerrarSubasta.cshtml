@@ -3,40 +3,66 @@
 
 <h1>Cerrar oferta.</h1>
 <div>
-    <div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div class="form-group">
-                <h2>@Model.Nombre</h2>
-            </div>
-            <div class="form-group">
-                <h2>@Model.</h2> @* Mejor oferta hasta el momento *@
-            </div>
-            <div class="form-group">
-                <h2>@Model.Estado</h2>
-            </div>
-            @foreach (var a in Model.Articulos)
-            {
-                <div class="form-group">
-                    <p>@a.Nombre</p>
-                </div>
-            }
-            <h3>¿Está seguro que desea desactivar el item seleccionado?</h3>
-			<div class="form-group">	
-            @if (Model.Estado == Entrega1.Clases.Publicacion.TipoEstado.Abierta)
-            {
-                <input type="submit" value="Finalizar Oferta" class="btn btn-danger" />
-            }
-            else
-            {
-                <input type="submit" value="Oferta Cerrada" disabled class="btn btn-primary" />
-            }
-            </div>
-        </form>
-    </div>
-    </div>
+	<div class="row">
+		<div class="col-md-4">
+			<form method="post">
+				<div class="form-group">
+					<h2>@Model.Nombre</h2>
+				</div>
+				<div class="form-group">
+					<h2>@Model.Estado</h2>
+				</div>
+				@foreach (var a in Model.Articulos)
+				{
+					<div class="form-group">
+						<p>@a.Nombre</p>
+					</div>
+				}
+				@if (Model._ofertas.Count() > 0)
+				{
+					<h2>Ofertas</h2>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Cliente</th>
+								<th>Monto</th>
+								<th>Fecha</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var o in Model._ofertas)
+							{
+								<tr>
+									<td>@o.Usuario.Nombre</td>
+									<td>@o.Monto</td>
+									<td>@o.Fecha</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+
+				}
+				else
+				{
+					<h2>No se han realizado ofertas</h2>
+				}
+				<h3>¿Está seguro que desea desactivar el item seleccionado?</h3>
+
+				<div class="form-group">
+					@if (Model.Estado == Entrega1.Clases.Publicacion.TipoEstado.Abierta)
+					{
+						<input type="submit" value="Finalizar Oferta" class="btn btn-danger" />
+					}
+					else
+					{
+						<input type="submit" value="Oferta Cerrada" disabled class="btn btn-primary" />
+					}
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 <p>@ViewBag.msg</p>
 <div>
-    <a asp-action="Index">Volver a la lista</a>
+	<a asp-action="Index">Volver a la lista</a>
 </div>

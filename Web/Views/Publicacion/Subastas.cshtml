@@ -1,28 +1,26 @@
 ﻿@using Entrega1.Clases.Publicacion;
-@model List<Publicacion>;
+@model List<Subasta>;
 <div class="container mt-1">
-    <div class="row gap-3 row-cols-2 justify-content-center">
-        @foreach (Publicacion p in Model)
-        {
-            if (p is Subasta s)
-            {
-                <div class="col-4 btn btn-primary">
-                    <h2>Subasta @s.Nombre</h2>
-                    <p>Articulos</p>
-                    @foreach (var a in s.GetArticulos())
-                    {
-                        <p>@a.Nombre</p>
-                    }
-                    @if (s.Estado == TipoEstado.Abierta)
-                    {
-                        @Html.ActionLink("Ver", "CerrarSubasta", new { id = s.Id }, new { @class = "btn btn-secondary" })
-                    }
-                    else
-                    {
-                        <input type="button" class="btn btn-secondary" value="Cerrada" disabled />
-                    }
-                </div>
-            }
-        }
-    </div>
+	<div class="row gap-3 row-cols-2 justify-content-center">
+		@foreach (Subasta s in Model)
+		{
+			<div class="col-4 btn btn-primary">
+				<h2>Subasta @s.Nombre</h2>
+				<p>Articulos</p>
+				@foreach (var a in s.GetArticulos())
+				{
+					<p>@a.Nombre</p>
+				}
+				@if (s.Estado == TipoEstado.Abierta)
+				{
+					@Html.ActionLink("Ver", "CerrarSubasta", new { id = s.Id }, new { @class = "btn btn-secondary" })
+				}
+				else
+				{
+					<input type="button" class="btn btn-secondary" value="Cerrada" disabled />
+				}
+			</div>
+
+		}
+	</div>
 </div>

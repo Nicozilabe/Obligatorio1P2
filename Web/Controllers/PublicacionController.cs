@@ -96,7 +96,7 @@ namespace Web.Controllers
                     }
                     catch (Exception ex)
                     {
-                       ViewBag.msg = ex.Message; 
+                        ViewBag.msg = ex.Message;
 
                     }
 
@@ -113,18 +113,32 @@ namespace Web.Controllers
                 return RedirectToAction("NotAllowed", "Aut");
             }
         }
+
+        public IActionResult Subastas()
+        {
+            if (HttpContext.Session.GetString("logueadoRol") == "Administrador")
+            {
+                return View(s.GetSubastas());
+            }
+            else
+            {
+                return RedirectToAction("NotAllowed", "Aut");
+            }
+        }
+        [HttpGet]
+        public IActionResult CerrarSubasta(int id)
+        {
+            if (HttpContext.Session.GetString("logueadoRol") == "Administrador")
+            {
+                return View(s.GetSubastaById(id));
+            }
+            else
+            {
+                return RedirectToAction("NotAllowed", "Aut");
+            }
+        }
         //[HttpPost]
-        //public IActionResult Subastas(int idSub) //idAdmin
-        //{
-        //    if (HttpContext.Session.GetString("logueadoRol") == "Administrador")
-        //    {
-        //        Subasta sub = s.GetSubastaById(idSub);
-        //        return View(s.GetSubastaById(idSub));
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("NotAllowed", "Aut");
-        //    }
-        //}
+
+    
     }
 }
