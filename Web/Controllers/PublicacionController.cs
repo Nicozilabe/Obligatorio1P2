@@ -97,15 +97,12 @@ namespace Web.Controllers
                     catch (Exception ex)
                     {
                         ViewBag.msg = ex.Message;
-
                     }
-
                 }
                 else
                 {
                     ViewBag.msg = "Subasta ya cerrada.";
                 }
-
                 return View(s.GetSubastaById(id));
             }
             else
@@ -137,8 +134,41 @@ namespace Web.Controllers
                 return RedirectToAction("NotAllowed", "Aut");
             }
         }
-        //[HttpPost]
+        [HttpPost]
+        public IActionResult CerrarSubasta(int id, bool check)
+        {
+            if (HttpContext.Session.GetString("logueadoRol") == "Administrador")
+            {
+                if (s.GetSubastaById(id).Estado == TipoEstado.Abierta && check)
+                {
+                    int? idAdmin = HttpContext.Session.GetInt32("logueadoId");
+                    try
+                    {
+                        s.CerrarPublicacion(idAdmin, id);
+                        ViewBag.msg = "Subasta finalizada exitosamente.";
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.msg = ex.Message;
+                    }
+                }
+                else if (!check)
+                {
+                    ViewBag.msg = "Debe seleccionar el checkbox";
+                }
+                else
+                {
+                    ViewBag.msg = "La subasta ya fue finalizada previamente.";
+                }
+                return View(s.GetSubastaById(id));
+            }
+            else
+            {
+                return RedirectToAction("NotAllowed", "Aut");
+            }
+        }
 
-    
     }
+
 }
+

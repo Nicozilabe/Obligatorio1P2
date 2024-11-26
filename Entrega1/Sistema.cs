@@ -397,17 +397,25 @@ namespace Entrega1
             }
             throw new Exception("Publicacion no encontrada.");
         }
-        public Usuario GetUsuarioById(int idUsuario)
+        public Usuario GetUsuarioById(int? idUsuario)
         {
             // List<Usuario> ret = new List<Usuario>();
-            foreach (Usuario u in GetUsuarios())
+            if (idUsuario == null)
             {
-                if (u.Id == idUsuario)
-                {
-                    return u;
-                }
+                throw new Exception("Id no valido");
             }
-            throw new Exception("Usuario no encontrado");
+            else
+            {
+                foreach (Usuario u in GetUsuarios())
+                {
+                    if (u.Id == idUsuario)
+                    {
+                        return u;
+                    }
+                }
+                throw new Exception("Usuario no encontrado");
+            }
+
         }
 
         // 
@@ -426,7 +434,7 @@ namespace Entrega1
             }
         }
 
-        public void CerrarPublicacion(int idUsuario, int idPublicacion)
+        public void CerrarPublicacion(int? idUsuario, int idPublicacion)
         {
             Publicacion p = GetPublicacionById(idPublicacion);
             if (p.Estado == TipoEstado.Abierta)

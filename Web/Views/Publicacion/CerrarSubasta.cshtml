@@ -40,22 +40,25 @@
 							}
 						</tbody>
 					</table>
-
 				}
 				else
 				{
 					<h2>No se han realizado ofertas</h2>
 				}
-				<h3>¿Está seguro que desea desactivar el item seleccionado?</h3>
-
 				<div class="form-group">
 					@if (Model.Estado == Entrega1.Clases.Publicacion.TipoEstado.Abierta)
 					{
-						<input type="submit" value="Finalizar Oferta" class="btn btn-danger" />
+						<h3>¿Está seguro que desea desactivar el item seleccionado?</h3>
+						@Html.CheckBox("check") <span>Entiendo que esta operación es riesgosa</span>
+						<input type="submit" value="Finalizar Subasta" class="btn btn-danger" />
 					}
 					else
 					{
-						<input type="submit" value="Oferta Cerrada" disabled class="btn btn-primary" />
+						<h2>Usuario comprador:</h2>
+						<p>@Model.Comprador.Nombre</p>
+						<h3>Administrador que finalizó la subasta.</h3>
+						<p>@Model.Realizador.Nombre</p>
+						<input type="submit" value="Subasta Cerrada" disabled class="btn btn-primary" />
 					}
 				</div>
 			</form>
@@ -64,5 +67,5 @@
 </div>
 <p>@ViewBag.msg</p>
 <div>
-	<a asp-action="Index">Volver a la lista</a>
+	<a asp-action="Subastas">Volver a la lista</a>
 </div>
