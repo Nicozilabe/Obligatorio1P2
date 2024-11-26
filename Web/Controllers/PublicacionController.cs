@@ -90,7 +90,7 @@ namespace Web.Controllers
                         ViewBag.msg = "El monto debe ser mayor a la anterior oferta";
                     }
                 }
-                else
+                else if(sub.Estado == TipoEstado.Abierta)
                 {
                     try
                     {
@@ -103,6 +103,10 @@ namespace Web.Controllers
 
                     }
 
+                }
+                else
+                {
+                    ViewBag.msg = "Subasta ya cerrada.";
                 }
                 return View(s.GetSubastaById(id));
             }

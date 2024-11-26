@@ -411,7 +411,7 @@ namespace Entrega1
             Subasta s = GetSubastaById(idSubasta);
             Oferta o = new Oferta(monto, GetCliente (idCliente), DateTime.Now);
             o.Verificar();
-            if (s != null)
+            if (s != null && s.Estado== TipoEstado.Abierta)
             {
                 s.AgregarOferta(o);
             }else
