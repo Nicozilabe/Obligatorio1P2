@@ -11,7 +11,7 @@ namespace Web.Controllers
         Sistema s = Sistema.GetInstancia();
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            if (HttpContext.Session.GetString("logueadoRol") == "Cliente")
             {
                 return View(s.GetPublicaciones());
             }
@@ -23,7 +23,7 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult Venta(int id)
         {
-            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            if (HttpContext.Session.GetString("logueadoRol") == "Cliente")
             {
                 ViewBag.idCliente = HttpContext.Session.GetInt32("logueadoId");
                 return View(s.GetVentaById(id));
@@ -37,7 +37,7 @@ namespace Web.Controllers
         [HttpPost]
         public IActionResult Venta(int idVenta, int idCliente)
         {
-            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            if (HttpContext.Session.GetString("logueadoRol") == "Cliente")
             {
                 ViewBag.idCliente = HttpContext.Session.GetInt32("logueadoId");
                 //El metodo se encarga de registrar la compra, actualizar el estado de la publicacion y descontar el saldo del cliente. Luego se actualiza el saldo del cliente en la sesion LogueadoSoldo
@@ -63,7 +63,7 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult Subasta(int id)
         {
-            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            if (HttpContext.Session.GetString("logueadoRol") == "Cliente")
             {
                 return View(s.GetSubastaById(id));
             }
@@ -76,7 +76,7 @@ namespace Web.Controllers
         [HttpPost]
         public IActionResult Subasta(int id, double monto)
         {
-            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            if (HttpContext.Session.GetString("logueadoRol") == "Cliente")
             {
                 Subasta sub = s.GetSubastaById(id);
                 if (double.IsNaN(monto) || monto < 0)

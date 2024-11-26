@@ -11,7 +11,7 @@ namespace Web.Controllers
         Sistema s = Sistema.GetInstancia();
         public IActionResult AgregarSaldo()
         {
-            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            if (HttpContext.Session.GetString("logueadoRol") == "Cliente")
             {
                 ViewBag.rol = HttpContext.Session.GetString("logueadoRol");
                 return View();
@@ -27,7 +27,7 @@ namespace Web.Controllers
         [HttpPost]
         public IActionResult AgregarSaldo(double monto)
         {
-            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            if (HttpContext.Session.GetString("logueadoRol") == "Cliente")
             {
                 if (double.IsNaN(monto) || monto < 0)
                 {

@@ -4,7 +4,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" id="formSubasta">
             <div class="form-group">
                 <h2>@Model.Nombre</h2>
             </div>
@@ -45,7 +45,7 @@
             {
                 <h2>No se han realizado ofertas</h2>
             }
-            <input type="number" name="monto" min="1" required />
+            <input type="number" id="montoSubasta" name="monto" min="1" required />
             <div class="form-group">
                 <input type="submit" value="Ofertar" class="btn btn-primary" />
             </div>
