@@ -67,6 +67,7 @@ namespace Entrega1.Clases.Publicacion
                     Realizador = a;
                     Comprador = o.Usuario;
                     Estado = TipoEstado.Cerrada;
+                    FechaDeFin = DateTime.Now;
                     encontrado = true;
                 }
                 if (!encontrado)
