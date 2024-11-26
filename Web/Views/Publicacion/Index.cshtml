@@ -3,13 +3,13 @@
 @model List<Publicacion>;
 
 <div class="container mt-1">
-    <div class="row gap-3 row-cols-2 justify-content-center">
+    <div class="row gap-3 row-cols-3 justify-content-center">
         @foreach (Publicacion p in Model)
         {
             //Muestra de multiples ventas, como catalogo.
             if (p is Venta v)
             {
-                <div class="col-4 btn btn-primary">
+                <div class="col-3 btn btn-primary">
                     <h2> Venta @v.Nombre</h2>
                     <p>Articulos</p>
                     @foreach (var a in v.GetArticulos())
@@ -27,7 +27,7 @@
             }
             else if (p is Subasta s)
             {
-                <div class="col-4 btn btn-primary">
+                <div class="col-3 btn btn-primary">
                     <h2>Subasta @s.Nombre</h2>
                     <p>Articulos</p>
                     @foreach (var a in s.GetArticulos())

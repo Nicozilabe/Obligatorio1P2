@@ -26,7 +26,6 @@ namespace Entrega1.Clases.Publicacion
         {
             Id=_ultimoId++;
         }
-
         //Constructor para precarga
         public Publicacion(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, Cliente comprador, DateTime fechaDeFin) : this()
         {
@@ -87,7 +86,5 @@ namespace Entrega1.Clases.Publicacion
         }
 
         public abstract void CerrarPublicacion(Usuario u);
-
-
     }
 }

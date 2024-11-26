@@ -39,7 +39,7 @@ namespace Entrega1.Clases.Usuarios
                 throw new Exception("Monto ingresado no válido"); 
             } else {
                 Saldo += montonero;
-            };
+            }
         }
         public void DescontarSaldo(double montonero)
         {
@@ -50,7 +50,7 @@ namespace Entrega1.Clases.Usuarios
             else
             {
                 Saldo -= montonero;
-            };
+            }
         }
         public bool SaldoSuficiente(double monto)
         {

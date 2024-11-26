@@ -338,7 +338,6 @@ namespace Entrega1
         }
         public Cliente GetCliente(int? idCliente)
         {
-
             List<Cliente> clientes = GetClientes();
             foreach (Cliente c in clientes)
             {
@@ -445,8 +444,6 @@ namespace Entrega1
             {
                 throw new Exception("Publicación cerrada");
             }
-
-
         }
 
         public Usuario Login(string Email, string Pass)

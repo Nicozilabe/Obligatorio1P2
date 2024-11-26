@@ -49,7 +49,9 @@
 					@if (Model.Estado == Entrega1.Clases.Publicacion.TipoEstado.Abierta)
 					{
 						<h3>¿Está seguro que desea desactivar el item seleccionado?</h3>
-						@Html.CheckBox("check") <span>Entiendo que esta operación es riesgosa</span>
+						<input type="checkbox" name="check" value="true" required/>
+						<span>Entiendo que esta operación es riesgosa</span>
+						<br />
 						<input type="submit" value="Finalizar Subasta" class="btn btn-danger" />
 					}
 					else

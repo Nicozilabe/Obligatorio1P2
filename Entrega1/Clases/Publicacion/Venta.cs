@@ -14,9 +14,7 @@ namespace Entrega1.Clases.Publicacion
 
         //constructor posta
         public Venta(string nombre) : base(nombre)
-        {
-
-        }
+        { }
         //Constructor precarga
         public Venta(string nombre, string estado, DateTime fechaPublicacion, Cliente realizador, bool esOfertaRelampago, Cliente comprador, DateTime fechaDeFin, string estadoVenta) : base(nombre, estado, fechaPublicacion, realizador, comprador, fechaDeFin)
         {
