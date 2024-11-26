@@ -39,7 +39,7 @@ namespace Web.Controllers
                         s.AgregarSaldoAUser(HttpContext.Session.GetInt32("logueadoId"), monto);
                         Cliente c = s.GetCliente(HttpContext.Session.GetInt32("logueadoId"));
                         HttpContext.Session.SetInt32("logueadoSaldo", (int)c.Saldo);
-                        return RedirectToAction("Index", "Home");
+                        ViewBag.msg = "Saldo agregado exitosamente";
                     }
                     catch (Exception ex)
                     {
