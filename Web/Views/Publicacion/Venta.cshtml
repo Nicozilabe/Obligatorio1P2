@@ -14,7 +14,7 @@
             <div class="form-group">
                 <h2>@Model.Estado</h2>
             </div>
-            @foreach(var a in Model.Articulos)
+            @foreach(var a in Model.GetArticulos())
             {
                 <div class="form-group">
                     <p>@a.Nombre</p>

@@ -17,13 +17,13 @@
                     <p>@Model.FechaPublicacion</p>
 				</div>
 			
-				@foreach (var a in Model.Articulos)
+				@foreach (var a in Model.GetArticulos())
 				{
 					<div class="form-group">
 						<p>@a.Nombre</p>
 					</div>
 				}
-				@if (Model._ofertas.Count() > 0)
+				@if (Model.GetOfertas().Count() > 0)
 				{
 					<h2>Ofertas</h2>
 					<table class="table table-striped">
@@ -35,7 +35,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach (var o in Model._ofertas)
+							@foreach (var o in Model.GetOfertas())
 							{
 								<tr>
 									<td>@o.Usuario.Nombre</td>

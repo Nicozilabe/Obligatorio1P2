@@ -58,7 +58,7 @@ namespace Entrega1.Clases.Publicacion
         public double CalcularPrecio()
         {
             double ret = 0;
-            foreach (Articulo a in Articulos)
+            foreach (Articulo a in GetArticulos())
             {
                 ret += a.Precio;
             }

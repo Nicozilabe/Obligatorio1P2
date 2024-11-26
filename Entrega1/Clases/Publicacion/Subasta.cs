@@ -10,7 +10,7 @@ namespace Entrega1.Clases.Publicacion
 {
     public class Subasta : Publicacion , IComparable<Subasta>
     {
-        public List<Oferta> _ofertas = new List<Oferta>();
+        private List<Oferta> _ofertas = new List<Oferta>();
 
         public Subasta()
         { }
@@ -57,7 +57,10 @@ namespace Entrega1.Clases.Publicacion
                 throw new Exception("Subasta ya cerrada");
             }
         }
-
+        public List<Oferta> GetOfertas()
+        {
+            return _ofertas;
+        }
         public override void CerrarPublicacion(Usuario u)
         {
             if (u is Administrador a)

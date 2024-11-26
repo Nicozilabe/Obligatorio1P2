@@ -16,7 +16,7 @@ namespace Entrega1.Clases.Publicacion
         public string Nombre { get; set; }
         public TipoEstado Estado { get; set; }
         public DateTime FechaPublicacion { get; set; }
-        public List<Articulo> Articulos = new List<Articulo>();
+        private List<Articulo> Articulos = new List<Articulo>();
         public Usuario? Realizador { get; set; }
         
         public Cliente? Comprador { get; set; }
