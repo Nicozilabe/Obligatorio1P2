@@ -47,7 +47,7 @@ namespace Entrega1.Clases.Usuarios
             {
                 throw new Exception("Email no valido");
             }
-            if (string.IsNullOrEmpty(Pass))
+            if (string.IsNullOrEmpty(Pass) || Pass.Length < 8)
             {
                 throw new Exception("Password no valida");
             }
