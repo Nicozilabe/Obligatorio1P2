@@ -11,33 +11,51 @@ namespace Web.Controllers
         Sistema s = Sistema.GetInstancia();
         public IActionResult AgregarSaldo()
         {
-            ViewBag.rol= HttpContext.Session.GetString("logueadoRol");
-            return View();
+            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
+            {
+                ViewBag.rol = HttpContext.Session.GetString("logueadoRol");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("NotAllowed", "Aut");
+            }
+
+
         }
 
         [HttpPost]
         public IActionResult AgregarSaldo(double monto)
         {
-            if (double.IsNaN(monto) || monto < 0)
+            if (HttpContext.Session.GetString("logeadoRol") == "Cliente")
             {
-                ViewBag.msg = "Monto no válido";
+                if (double.IsNaN(monto) || monto < 0)
+                {
+                    ViewBag.msg = "Monto no válido";
+                }
+                else
+                {
+                    //Pasa al metodo en Sistema la id del usuario actual a traves del LogueadoId y el monto agregado. Actualiza el saldo en la sesion LogueadoSaldo con el actual (c.Saldo)
+                    try
+                    {
+                        s.AgregarSaldoAUser(HttpContext.Session.GetInt32("logueadoId"), monto);
+                        Cliente c = s.GetCliente(HttpContext.Session.GetInt32("logueadoId"));
+                        HttpContext.Session.SetInt32("logueadoSaldo", (int)c.Saldo);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.msg = ex.Message;
+                    }
+                }
+                return View();
             }
             else
             {
-                //Pasa al metodo en Sistema la id del usuario actual a traves del LogueadoId y el monto agregado. Actualiza el saldo en la sesion LogueadoSaldo con el actual (c.Saldo)
-                try
-                {
-                    s.AgregarSaldoAUser(HttpContext.Session.GetInt32("logueadoId"), monto);
-                    Cliente c = s.GetCliente(HttpContext.Session.GetInt32("logueadoId"));
-                    HttpContext.Session.SetInt32("logueadoSaldo", (int)c.Saldo);
-                    return RedirectToAction("Index", "Home");
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.msg= ex.Message;
-                }
+                return RedirectToAction("NotAllowed", "Aut");
             }
-            return View();
+
+
         }
     }
 }

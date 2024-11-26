@@ -78,5 +78,9 @@ namespace Web.Controllers
             }
             return View();
         }
+        public IActionResult NotAllowed()
+        {
+            return View();
+        }
     }
 }
