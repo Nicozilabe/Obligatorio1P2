@@ -63,7 +63,7 @@ namespace Entrega1.Clases.Publicacion
             if (u is Administrador a)
             {
                 bool encontrado = false;
-                for (int i = _ofertas.Count() - 1; i > 0 && !encontrado; i--)
+                for (int i = (_ofertas.Count() - 1); i >= 0 && !encontrado; i--)
                 {
                     Oferta o = _ofertas[i];
                     o.Verificar();
