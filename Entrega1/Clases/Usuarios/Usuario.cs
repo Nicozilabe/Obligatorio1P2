@@ -47,10 +47,30 @@ namespace Entrega1.Clases.Usuarios
             {
                 throw new Exception("Email no valido");
             }
-            if (string.IsNullOrEmpty(Pass) || Pass.Length < 8)
+            if (!ValidarPass(Pass))
             {
                 throw new Exception("Password no valida");
             }
+
+        }
+        public bool ValidarPass(string pass)
+        {
+            bool letra = false;
+            bool numero = false;
+            if (!string.IsNullOrEmpty(Pass) && pass.Length > 7)
+            {
+                foreach (char c in pass)
+                {
+                    if (char.IsLetter(c))
+                    {
+                        letra = true;
+                    }else if (char.IsDigit(c))
+                    {
+                        numero = true;
+                    }
+                }
+            }
+            return (letra && numero);
         }
         public  override bool Equals(object? obj)
         {
