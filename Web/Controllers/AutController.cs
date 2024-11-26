@@ -58,6 +58,7 @@ namespace Web.Controllers
             //TempData["Message"] = "Sesion cerrada correctamente.";
             return RedirectToAction("Index", "Home");
         }
+        
         [HttpGet]
         public IActionResult Registro()
         {

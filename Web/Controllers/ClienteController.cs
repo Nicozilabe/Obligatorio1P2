@@ -20,8 +20,6 @@ namespace Web.Controllers
             {
                 return RedirectToAction("NotAllowed", "Aut");
             }
-
-
         }
 
         [HttpPost]
@@ -54,8 +52,6 @@ namespace Web.Controllers
             {
                 return RedirectToAction("NotAllowed", "Aut");
             }
-
-
         }
     }
 }

@@ -32,7 +32,6 @@ namespace Web.Controllers
             {
                 return RedirectToAction("NotAllowed", "Aut");
             }
-
         }
         [HttpPost]
         public IActionResult Venta(int idVenta, int idCliente)
@@ -58,7 +57,6 @@ namespace Web.Controllers
             {
                 return RedirectToAction("NotAllowed", "Aut");
             }
-
         }
         [HttpGet]
         public IActionResult Subasta(int id)
@@ -71,7 +69,6 @@ namespace Web.Controllers
             {
                 return RedirectToAction("NotAllowed", "Aut");
             }
-
         }
         [HttpPost]
         public IActionResult Subasta(int id, double monto)
@@ -100,9 +97,7 @@ namespace Web.Controllers
                     catch (Exception ex)
                     {
                         { ViewBag.msg = ex.Message; }
-
                     }
-
                 }
                 return View(s.GetSubastaById(id));
             }
@@ -110,8 +105,31 @@ namespace Web.Controllers
             {
                 return RedirectToAction("NotAllowed", "Aut");
             }
-
-
         }
+        [HttpGet]
+        public IActionResult Subastas(int id)
+        {
+            if (HttpContext.Session.GetString("logueadoRol") == "Administrador")
+            {
+                return View(s.GetSubastaById(id));
+            }
+            else
+            {
+                return RedirectToAction("NotAllowed", "Aut");
+            }
+        }
+        //[HttpPost]
+        //public IActionResult Subastas(int idSub) //idAdmin
+        //{
+        //    if (HttpContext.Session.GetString("logueadoRol") == "Administrador")
+        //    {
+        //        Subasta sub = s.GetSubastaById(idSub);
+        //        return View(s.GetSubastaById(idSub));
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("NotAllowed", "Aut");
+        //    }
+        //}
     }
 }
