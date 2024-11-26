@@ -245,7 +245,7 @@ namespace Entrega1
                 throw new Exception("Articulo ya existente");
             }
         }
-        
+
         public List<Cliente> GetClientes()
         {
             List<Cliente> clientes = new List<Cliente>();
@@ -268,8 +268,8 @@ namespace Entrega1
         }
         public List<Publicacion> GetPublicacionesActivas()
         {
-            List <Publicacion> ret = new List<Publicacion>();
-            foreach(Publicacion p in _publicaciones)
+            List<Publicacion> ret = new List<Publicacion>();
+            foreach (Publicacion p in _publicaciones)
             {
                 if (p.Estado == TipoEstado.Abierta)
                 {
@@ -282,11 +282,12 @@ namespace Entrega1
         {
             return _usuarios;
         }
-        public  List<Subasta> GetSubastas(){
-            List < Subasta > subastas = new List < Subasta >();
+        public List<Subasta> GetSubastas()
+        {
+            List<Subasta> subastas = new List<Subasta>();
             foreach (Publicacion p in GetPublicaciones())
             {
-                if(p is Subasta s)
+                if (p is Subasta s)
                 {
                     subastas.Add(s);
                 }
@@ -295,23 +296,23 @@ namespace Entrega1
         }
         public List<Venta> GetVentas()
         {
-            List<Venta> ventas = new List <Venta>();
+            List<Venta> ventas = new List<Venta>();
             foreach (Publicacion p in GetPublicaciones())
             {
-                if(p is Venta v)
+                if (p is Venta v)
                 {
                     ventas.Add(v);
                 }
             }
             return ventas;
         }
-        
+
         // Parte 2 del menu en Program.
         public List<Articulo> BuscarPorCategoria(string c)
         {
             //VerificarCategoria(c); realizamos la validación en el program (que no sea vacía)
             List<Articulo> ret = new List<Articulo>();
-            foreach(Articulo a in _articulos)
+            foreach (Articulo a in _articulos)
             {
                 if (Regex.Replace(a.Categoria.ToLower().Normalize(NormalizationForm.FormD), @"[^a-zA-z0-9 ]+", "") == c.ToLower())
                 {
@@ -320,7 +321,7 @@ namespace Entrega1
             }
             return ret;
         }
-        
+
         // Parte 4 del menu en Program.
         public List<Publicacion> GetPublicacionesPorFecha(DateTime inicio, DateTime fin)
         {
@@ -335,7 +336,8 @@ namespace Entrega1
             }
             return ret;
         }
-        public Cliente GetCliente(int? idCliente) {
+        public Cliente GetCliente(int? idCliente)
+        {
 
             List<Cliente> clientes = GetClientes();
             foreach (Cliente c in clientes)
@@ -344,7 +346,7 @@ namespace Entrega1
                 {
                     return c;
 
-                } 
+                }
             }
             throw new Exception("Cliente no encontrado");
         }
@@ -352,10 +354,13 @@ namespace Entrega1
         public void AgregarSaldoAUser(int? idUser, double monto)
         {
             Cliente cliente = GetCliente(idUser);
-            if (cliente == null) {
+            if (cliente == null)
+            {
                 throw new Exception("Usuario no válido");
-            } else {
-                cliente.CargarSaldo(monto); 
+            }
+            else
+            {
+                cliente.CargarSaldo(monto);
             }
         }
 
@@ -385,7 +390,7 @@ namespace Entrega1
         {
             foreach (Publicacion p in GetPublicaciones())
             {
-                if(p.Id == idPublicacion)
+                if (p.Id == idPublicacion)
                 {
                     return p;
                 }
@@ -395,10 +400,10 @@ namespace Entrega1
         public Usuario GetUsuarioById(int idUsuario)
         {
             // List<Usuario> ret = new List<Usuario>();
-            foreach(Usuario u in GetUsuarios())
+            foreach (Usuario u in GetUsuarios())
             {
-                if (u.Id == idUsuario) 
-                { 
+                if (u.Id == idUsuario)
+                {
                     return u;
                 }
             }
@@ -406,15 +411,16 @@ namespace Entrega1
         }
 
         // 
-        public void AgregarOfertaASubastas(int? idCliente, int idSubasta,double monto)
+        public void AgregarOfertaASubastas(int? idCliente, int idSubasta, double monto)
         {
             Subasta s = GetSubastaById(idSubasta);
-            Oferta o = new Oferta(monto, GetCliente (idCliente), DateTime.Now);
+            Oferta o = new Oferta(monto, GetCliente(idCliente), DateTime.Now);
             o.Verificar();
-            if (s != null)
+            if (s != null && s.Estado == TipoEstado.Abierta)
             {
                 s.AgregarOferta(o);
-            }else
+            }
+            else
             {
                 throw new Exception("Oferta no valida");
             }
@@ -423,7 +429,16 @@ namespace Entrega1
         public void CerrarPublicacion(int idUsuario, int idPublicacion)
         {
             Publicacion p = GetPublicacionById(idPublicacion);
-            p.CerrarPublicacion(GetUsuarioById(idUsuario));
+            if (p.Estado == TipoEstado.Abierta)
+            {
+                p.CerrarPublicacion(GetUsuarioById(idUsuario));
+            }
+            else
+            {
+                throw new Exception("Publicación cerrada");
+            }
+
+
         }
 
         public Usuario Login(string Email, string Pass)
@@ -432,7 +447,7 @@ namespace Entrega1
             {
                 if (u.Email.Equals(Email) && u.Pass.Equals(Pass))
                 {
-                    return u; 
+                    return u;
                 }
             }
             throw new Exception("Email o contraseña no validos.");

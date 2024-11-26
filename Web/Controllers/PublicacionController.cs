@@ -38,18 +38,25 @@ namespace Web.Controllers
         {
             if (HttpContext.Session.GetString("logueadoRol") == "Cliente")
             {
-                ViewBag.idCliente = HttpContext.Session.GetInt32("logueadoId");
-                //El metodo se encarga de registrar la compra, actualizar el estado de la publicacion y descontar el saldo del cliente. Luego se actualiza el saldo del cliente en la sesion LogueadoSoldo
-                try
+                if (s.GetVentaById(idVenta).Estado == TipoEstado.Abierta)
                 {
-                    s.CerrarPublicacion(idCliente, idVenta);
-                    Cliente c = s.GetCliente(HttpContext.Session.GetInt32("logueadoId"));
-                    HttpContext.Session.SetInt32("logueadoSaldo", (int)c.Saldo);
-                    ViewBag.msg = "Compra realizada efectivamente";
+                    ViewBag.idCliente = HttpContext.Session.GetInt32("logueadoId");
+                    //El metodo se encarga de registrar la compra, actualizar el estado de la publicacion y descontar el saldo del cliente. Luego se actualiza el saldo del cliente en la sesion LogueadoSoldo
+                    try
+                    {
+                        s.CerrarPublicacion(idCliente, idVenta);
+                        Cliente c = s.GetCliente(HttpContext.Session.GetInt32("logueadoId"));
+                        HttpContext.Session.SetInt32("logueadoSaldo", (int)c.Saldo);
+                        ViewBag.msg = "Compra realizada efectivamente";
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.msg = ex.Message;
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    ViewBag.msg = ex.Message;
+                    ViewBag.msg = "Venta ya cerrada";
                 }
                 return View(s.GetVentaById(idVenta));
             }
@@ -80,14 +87,7 @@ namespace Web.Controllers
                 {
                     ViewBag.msg = "Monto no válido";
                 }
-                else if (sub._ofertas.Count() != 0)
-                {
-                    if (monto < sub._ofertas.Last().Monto)
-                    {
-                        ViewBag.msg = "El monto debe ser mayor a la anterior oferta";
-                    }
-                }
-                else
+                else if (sub.Estado == TipoEstado.Abierta)
                 {
                     try
                     {
@@ -96,21 +96,16 @@ namespace Web.Controllers
                     }
                     catch (Exception ex)
                     {
-                        { ViewBag.msg = ex.Message; }
+                       ViewBag.msg = ex.Message; 
+
                     }
+
                 }
-                return View(s.GetSubastaById(id));
-            }
-            else
-            {
-                return RedirectToAction("NotAllowed", "Aut");
-            }
-        }
-        [HttpGet]
-        public IActionResult Subastas(int id)
-        {
-            if (HttpContext.Session.GetString("logueadoRol") == "Administrador")
-            {
+                else
+                {
+                    ViewBag.msg = "Subasta ya cerrada.";
+                }
+
                 return View(s.GetSubastaById(id));
             }
             else
