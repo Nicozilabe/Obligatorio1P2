@@ -19,7 +19,7 @@ function validarPass(pass) {
     let letra = false;
     let numero = false;
     let largo = false;
-    if (pass.length >= 5) {
+    if (pass.length >= 8) {
         largo = true;
     }
     for (let i = 0; i < pass.length; i++) {
