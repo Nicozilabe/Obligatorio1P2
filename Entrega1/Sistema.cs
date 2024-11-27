@@ -283,7 +283,7 @@ namespace Entrega1
             return _usuarios;
         }
 
-    //las entrega ordenadas por fecha
+        //las entrega ordenadas por fecha
         public List<Subasta> GetSubastas()
         {
             List<Subasta> subastas = new List<Subasta>();
@@ -417,10 +417,8 @@ namespace Entrega1
                 }
                 throw new Exception("Usuario no encontrado");
             }
-
         }
 
-        // 
         public void AgregarOfertaASubastas(int? idCliente, int idSubasta, double monto)
         {
             Subasta s = GetSubastaById(idSubasta);
