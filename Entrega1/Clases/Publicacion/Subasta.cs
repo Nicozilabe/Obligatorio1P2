@@ -79,7 +79,6 @@ namespace Entrega1.Clases.Publicacion
                         FechaDeFin = DateTime.Now;
                         encontrado = true;
                     }
-
                 }
                 if (!encontrado)
                 {
