@@ -8,7 +8,7 @@ using Entrega1.Interfaz;
 
 namespace Entrega1.Clases.Publicacion
 {
-    public class Subasta : Publicacion , IComparable<Subasta>
+    public class Subasta : Publicacion, IComparable<Subasta>
     {
         private List<Oferta> _ofertas = new List<Oferta>();
 
@@ -69,14 +69,17 @@ namespace Entrega1.Clases.Publicacion
                 for (int i = (_ofertas.Count() - 1); i >= 0 && !encontrado; i--)
                 {
                     Oferta o = _ofertas[i];
-                    o.Verificar();
-                    // oferta.Verificar ya verifica que el cliente posea el saldo suficiente
-                    o.Usuario.DescontarSaldo(o.Monto);
-                    Realizador = a;
-                    Comprador = o.Usuario;
-                    Estado = TipoEstado.Cerrada;
-                    FechaDeFin = DateTime.Now;
-                    encontrado = true;
+                    if (o.Validar())
+                    {
+                        // oferta.Verificar ya verifica que el cliente posea el saldo suficiente
+                        o.Usuario.DescontarSaldo(o.Monto);
+                        Realizador = a;
+                        Comprador = o.Usuario;
+                        Estado = TipoEstado.Cerrada;
+                        FechaDeFin = DateTime.Now;
+                        encontrado = true;
+                    }
+
                 }
                 if (!encontrado)
                 {

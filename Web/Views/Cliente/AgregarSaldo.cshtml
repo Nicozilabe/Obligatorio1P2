@@ -1,4 +1,4 @@
-﻿@if(ViewBag.rol == "Cliente")
+﻿@if (Context.Session.GetString("logueadoRol") == "Cliente")
 {
     <h1>Agregar Saldo</h1>
     <hr />

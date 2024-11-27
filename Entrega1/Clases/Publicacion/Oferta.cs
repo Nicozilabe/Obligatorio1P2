@@ -47,6 +47,23 @@ namespace Entrega1.Clases.Publicacion
             }
         }
 
+        public bool Validar()
+        {
+            bool ret = true;
+            if (double.IsNaN(Monto) || Monto < 1)
+            {
+                ret = false;
+            }
+            if (Usuario == null)
+            {
+                ret = false;
+            }
+            if (!Usuario.SaldoSuficiente(Monto))
+            {
+                ret = false;
+            }
+            return ret;
+        }
         public int CompareTo(Oferta? other)
         {
             return (Monto.CompareTo(other.Monto));
